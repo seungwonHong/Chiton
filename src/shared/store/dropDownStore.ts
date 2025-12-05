@@ -17,6 +17,12 @@ interface DropDownStore {
   setCommentEditOpen: (commentEditOpen: number | null) => void;
   sideBarProfileDropDownOpen: boolean;
   setSideBarProfileDropDownOpen: (isOpen: boolean) => void;
+  activeDashboardFilter: string|null;
+  setActiveDashboardFilter: (activeDashboardFilter: string | null) => void;
+  managersModalDropdownOpen: string | null;
+  setManagersModalDropdownOpen: (managersModalDropdownOpen: string | null) => void;
+  lectureDropDownOpen: string | null;
+  setLectureDropDownOpen: (lectureDropDownOpen: string | null) => void;
 }
 
 const useDropDownStore = create<DropDownStore>((set) => ({
@@ -40,6 +46,14 @@ const useDropDownStore = create<DropDownStore>((set) => ({
   sideBarProfileDropDownOpen: false,
   setSideBarProfileDropDownOpen: (sideBarProfileDropDownOpen) =>
     set({ sideBarProfileDropDownOpen }),
+  activeDashboardFilter: null,
+  setActiveDashboardFilter: (activeDashboardFilter) =>
+    set({ activeDashboardFilter }),
+  managersModalDropdownOpen: null,
+  setManagersModalDropdownOpen: (managersModalDropdownOpen) =>
+    set({ managersModalDropdownOpen }),
+  lectureDropDownOpen: null,
+  setLectureDropDownOpen: (lectureDropDownOpen) => set({ lectureDropDownOpen }),
 }));
 
 export default useDropDownStore;

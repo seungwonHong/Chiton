@@ -91,6 +91,11 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
+        url: "/faviconDark.png",
+        sizes: "48x48",
+        type: "image/png",
+      },
+      {
         url: "/favicon.png",
         sizes: "48x48",
         type: "image/png",
@@ -103,8 +108,8 @@ export const metadata: Metadata = {
         media: "(prefers-color-scheme: dark)",
       },
     ],
-    shortcut: "/faviconDark.png", // 라이트 모드용 (기본값)
-    apple: "/faviconDark.png", // 라이트 모드용 (기본값)
+    shortcut: "/faviconDark.png",
+    apple: "/faviconDark.png",
   },
 };
 

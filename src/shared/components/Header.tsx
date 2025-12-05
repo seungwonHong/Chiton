@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { PanelLeft } from "lucide-react";
+import { LayoutGrid, PanelLeft, UserStar } from "lucide-react";
 import Link from "next/link";
 import { User } from "lucide-react";
 import useSidebarStore from "../store/sidebarStore";
@@ -143,24 +143,43 @@ const Header = () => {
         {mobileProfileDropDownOpen && (
           <DropDownMenu className="top-[6.4rem] right-[0]" align="right">
             <Link
-              href="/profile/1"
-              className={`flex flex-row items-center justify-center gap-[1rem] px-[3.2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
+              href="/profile/1?type=posts"
+              className={`flex flex-row items-center justify-start gap-[1rem] px-[1.4rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
             >
               <User className="w-[2.4rem] h-[2.4rem]" />
               <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal whitespace-nowrap">
                 My Profile
               </span>
             </Link>
-            <div
-              className={`flex flex-row items-center justify-center gap-[1rem] px-[3.2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
+            <Link
+              href="/dashboard?earnings=30&subscribers=30&new-subscribers=30&churned-subscribers=30&subscriber-table=1"
+              className={`flex flex-row items-center justify-start gap-[1rem] px-[1.4rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
+            >
+              <LayoutGrid className="w-[2.4rem] h-[2.4rem]" />
+              <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal whitespace-nowrap">
+                Dashboard
+              </span>
+            </Link>
+            <Link
+              href="/admin-dashboard?earnings=30&subscribers=30&new-subscribers=30&churned-subscribers=30&subscriber-table=1"
+              className={`flex flex-row items-center justify-start gap-[1rem] px-[1.4rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
+            >
+              <UserStar className="w-[2.4rem] h-[2.4rem]" />
+              <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal whitespace-nowrap">
+                Admin Dashboard
+              </span>
+            </Link>
+            <Link
+              href="/settings"
+              className={`flex flex-row items-center justify-start gap-[1rem] px-[1.4rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
             >
               <Settings className="w-[2.4rem] h-[2.4rem]" />
               <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal whitespace-nowrap">
                 Settings
               </span>
-            </div>
+            </Link>
             <div
-              className={`flex flex-row items-center justify-center gap-[1rem] px-[3.2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
+              className={`flex flex-row items-center justify-start gap-[1rem] px-[1.4rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
             >
               <LogOut className="w-[2.4rem] h-[2.4rem]" />
               <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal whitespace-nowrap">

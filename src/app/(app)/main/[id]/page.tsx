@@ -5,12 +5,13 @@ import { Code } from "lucide-react";
 import { Play } from "lucide-react";
 import { AudioLines } from "lucide-react";
 import { Paintbrush } from "lucide-react";
-import Post from "@/shared/components/post components/Post";
-import SidePanel from "@/shared/components/side panel/SidePanel";
-import PostFilter from "@/shared/components/post components/PostFilter";
+import Post from "@/shared/components/post/Post";
+import SidePanel from "@/shared/components/side-panel/SidePanel";
+import PostFilter from "@/shared/components/post/PostFilter";
 import TabButton from "@/shared/components/TabButton";
 import MobilePostButton from "@/features/main/components/MobilePostButton";
 import TopicComponent from "@/shared/components/topic/TopicComponent";
+import LectureComponent from "@/shared/components/lecture/LectureComponent";
 
 const Main = async ({
   params,
@@ -18,7 +19,7 @@ const Main = async ({
 }: {
   params: Promise<{ id: string }>;
   searchParams: Promise<{
-    type?: "posts" | "topics";
+    type?: "posts" | "topics" | "lectures";
   }>;
 }) => {
   console.log("Before await params");
@@ -59,7 +60,7 @@ const Main = async ({
             {/* lg 이하를 위한 탭 버튼 */}
             <div className="w-full xl:hidden mb-[2rem]">
               <Suspense fallback={<div></div>}>
-                <TabButton tabs={["Posts", "Topics"]} type="home" />
+                <TabButton tabs={["Posts", "Topics", "Lectures"]} type="home" />
               </Suspense>
             </div>
 
@@ -77,17 +78,23 @@ const Main = async ({
                   </React.Fragment>
                 ))}
               </>
-            ) : (
+            ) : type === "topics" ? (
               <>
                 {Array.from({ length: 5 }).map((_, index) => (
                   <React.Fragment key={index}>
-                    <TopicComponent type="mainPage" />
+                    <TopicComponent ViewType="mainPage" />
                     {index < 4 && (
                       <div className="2xl:my-[1.4rem] lg:my-[1rem] md:my-[0.8rem] my-[0.6rem] bg-divide-color w-full h-[0.5px]" />
                     )}
                   </React.Fragment>
                 ))}
               </>
+            ) : (
+              <div className="grid md:grid-cols-2 grid-cols-1 md:gap-[0.2rem] gap-[3.2rem]">
+                {Array.from({ length: 10 }).map((_, index) => (
+                  <LectureComponent key={index} id={index.toString()} />
+                ))}
+              </div>
             )}
           </div>
 

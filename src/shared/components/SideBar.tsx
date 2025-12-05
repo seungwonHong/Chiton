@@ -1,7 +1,15 @@
 "use client";
 import React, { useEffect } from "react";
-import { House, LogOut, Settings, User } from "lucide-react";
+import {
+  House,
+  LogOut,
+  Settings,
+  User,
+  Search,
+  LayoutGrid,
+} from "lucide-react";
 import { Bell } from "lucide-react";
+import { UserStar } from "lucide-react";
 import { Code } from "lucide-react";
 import { Play } from "lucide-react";
 import { AudioLines } from "lucide-react";
@@ -13,9 +21,11 @@ import { Plus } from "lucide-react";
 import useDropDownStore from "../store/dropDownStore";
 import DropDownMenu from "./DropDownMenu";
 import ProfileImageComponent from "./ProfileImageComponent";
+import { usePathname } from "next/navigation";
 
 const SideBar = () => {
   const { setIsOpen, isMobile, isClicked, setIsClicked } = useSidebarStore();
+  const pathname = usePathname();
   const {
     sideBarDropDownOpen,
     setSideBarDropDownOpen,
@@ -27,7 +37,7 @@ const SideBar = () => {
     const currentPath = window.location.pathname;
     const page = currentPath.split("/").pop();
     setIsClicked(page || "");
-  }, []);
+  }, [pathname]);
 
   return (
     <div className="fixed h-full flex flex-col items-center justify-center 2xl:w-[24rem] lg:w-[20rem] md:w-[4.8rem] w-[16rem]">
@@ -51,7 +61,7 @@ const SideBar = () => {
           <ChevronRight className="w-[2.4rem] h-[2.4rem] lg:block md:hidden ml-auto text-[#b4b4b4] opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out" />
         </Link>
         <Link
-          href="/main/notification?type=posts&filter=recent"
+          href="/main/notification"
           className={`group flex flex-row items-center lg:justify-start md:justify-center justify-start ${
             isClicked === "notification"
               ? "bg-side-bar-hover"
@@ -144,7 +154,7 @@ const SideBar = () => {
 
       <div className=" flex-col md:items-center md:justify-center lg:items-start xl:justify-start md:absolute hidden md:flex 2xl:bottom-[1.6rem] lg:bottom-[1.4rem] md:bottom-[1.2rem] bottom-[1rem] left-0 w-full">
         {/* 포스트 & 토픽 추가 버튼 */}
-        <div className="md:flex hidden relative xl:hidden mb-[1.2rem]">
+        <div className="md:flex flex-col gap-[1.2rem] hidden relative xl:hidden mb-[1.2rem]">
           {sideBarDropDownOpen && (
             <DropDownMenu className="bottom-[4.8rem] left-[2rem]" align="left">
               <div className="flex flex-row items-center justify-center px-[3.2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out">
@@ -157,8 +167,17 @@ const SideBar = () => {
                   Create Topic
                 </span>
               </div>
+              <div className="flex flex-row items-center justify-center px-[3.2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out">
+                <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal whitespace-nowrap">
+                  Create Lecture
+                </span>
+              </div>
             </DropDownMenu>
           )}
+
+          <button className="flex flex-row items-center justify-center rounded-full bg-side-bar-plus-button w-[4rem] h-[4rem] cursor-pointer hover:bg-side-bar-plus-button-hover backdrop-blur-sm transition-all duration-300 ease-in-out ">
+            <Search className="w-[2rem] h-[2rem]" />
+          </button>
 
           <button
             className="flex flex-row items-center justify-center rounded-full bg-side-bar-plus-button w-[4rem] h-[4rem] cursor-pointer hover:bg-side-bar-plus-button-hover backdrop-blur-sm transition-all duration-300 ease-in-out "
@@ -177,24 +196,43 @@ const SideBar = () => {
           {sideBarProfileDropDownOpen && (
             <DropDownMenu className="bottom-[5.6rem] left-[0]" align="left">
               <Link
-                href="/profile/1"
-                className={`flex flex-row items-center justify-center gap-[1rem] px-[3.2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
+                href="/profile/1?type=posts"
+                className={`flex flex-row items-center justify-start gap-[1rem] px-[2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
               >
                 <User className="w-[2.4rem] h-[2.4rem]" />
                 <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal whitespace-nowrap">
                   My Profile
                 </span>
               </Link>
-              <div
-                className={`flex flex-row items-center justify-center gap-[1rem] px-[3.2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
+              <Link
+                href="/dashboard?earnings=30&subscribers=30&new-subscribers=30&churned-subscribers=30&subscriber-table=1"
+                className={`flex flex-row items-center justify-start gap-[1rem] px-[2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
+              >
+                <LayoutGrid className="w-[2.4rem] h-[2.4rem]" />
+                <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal whitespace-nowrap">
+                  Dashboard
+                </span>
+              </Link>
+              <Link
+                href="/admin-dashboard?earnings=30&subscribers=30&new-subscribers=30&churned-subscribers=30&subscriber-table=1"
+                className={`flex flex-row items-center justify-start gap-[1rem] px-[2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
+              >
+                <UserStar className="w-[2.4rem] h-[2.4rem]" />
+                <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal whitespace-nowrap">
+                  Admin Dashboard
+                </span>
+              </Link>
+              <Link
+                href="/settings"
+                className={`flex flex-row items-center justify-start gap-[1rem] px-[2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
               >
                 <Settings className="w-[2.4rem] h-[2.4rem]" />
                 <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal whitespace-nowrap">
                   Settings
                 </span>
-              </div>
+              </Link>
               <div
-                className={`flex flex-row items-center justify-center gap-[1rem] px-[3.2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
+                className={`flex flex-row items-center justify-start gap-[1rem] px-[2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
               >
                 <LogOut className="w-[2.4rem] h-[2.4rem]" />
                 <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal whitespace-nowrap">

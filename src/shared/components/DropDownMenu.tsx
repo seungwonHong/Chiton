@@ -19,7 +19,7 @@ const DropDownMenu = ({ children, className, align = "left" }: Props) => {
         stiffness: 600,
         damping: 20,
       }}
-      className={`absolute flex flex-col items-center justify-center z-[120] p-[0.4rem] backdrop-blur-sm bg-drop-down-menu-background lg:rounded-[1.4rem] rounded-[1.2rem] shadow-lg gap-[0.4rem] ${className}`}
+      className={`absolute flex flex-col items-center justify-center z-[120] p-[0.4rem] backdrop-blur-sm bg-drop-down-menu-background border-[0.8px] border-drop-down-menu-border lg:rounded-[1.4rem] rounded-[1.2rem] shadow-lg gap-[0.4rem] ${className}`}
     >
       {children}
     </motion.div>

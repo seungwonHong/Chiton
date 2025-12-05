@@ -32,7 +32,13 @@ const TabButton = ({ tabs, type }: Props) => {
       const typeParam = searchParams.get("type");
       if (typeParam) {
         // 쿼리 파라미터를 직접 읽어서 탭 설정
-        setActiveTab(typeParam === "posts" ? "Posts" : "Topics");
+        setActiveTab(
+          typeParam === "posts"
+            ? "Posts"
+            : typeParam === "topics"
+            ? "Topics"
+            : "Lectures"
+        );
       }
     }
   }, [type, searchParams.toString(), setActiveTab]);

@@ -1,10 +1,10 @@
 import React from "react";
-import Post from "@/shared/components/post components/Post";
-import SidePanel from "@/shared/components/side panel/SidePanel";
+import Post from "@/shared/components/post/Post";
+import SidePanel from "@/shared/components/side-panel/SidePanel";
 import MobilePostButton from "@/features/main/components/MobilePostButton";
 import Input from "@/shared/components/Input";
 import { SendHorizontal } from "lucide-react";
-import Comment from "@/shared/components/post components/Comment";
+import Comment from "@/shared/components/post/Comment";
 
 const PostDetail = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
