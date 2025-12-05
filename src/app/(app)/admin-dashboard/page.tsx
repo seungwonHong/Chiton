@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { UserStar, Flag, Mail, Users } from "lucide-react";
 import SubscriberStatCard from "@/features/dashboard/components/SubscriberStatCard";
 import EarningsComponent from "@/features/dashboard/components/EarningsComponent";
@@ -15,16 +15,18 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import DashboardModal from "@/features/dashboard/components/DashboardModal";
-import { useSearchParams } from "next/navigation";
 import useModalStore from "@/shared/store/modalStore";
 import TableStatus from "@/features/dashboard/components/TableStatus";
 
 const AdminDashboard = () => {
-  const searchParams = useSearchParams();
-  const earnings = searchParams.get("earnings") || "30";
-  const earningsValue = Number(earnings);
+  const [earningsValue, setEarningsValue] = useState(30);
   const { isOpen, setIsOpen } = useModalStore();
   const [modalType, setModalType] = useState("");
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setEarningsValue(Number(params.get("earnings") || "30"));
+  }, []);
 
   // 목업 데이터
   const chartData = Array.from(
@@ -105,10 +107,12 @@ const AdminDashboard = () => {
                 filter={false}
               />
             </div>
-            <div className="cursor-pointer" onClick={() => {
-              setIsOpen(true);
-              setModalType("report-management");
-            }}
+            <div
+              className="cursor-pointer"
+              onClick={() => {
+                setIsOpen(true);
+                setModalType("report-management");
+              }}
             >
               <SubscriberStatCard
                 title="Report Management"
