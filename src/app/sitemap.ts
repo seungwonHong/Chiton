@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://www.timeline-io.com";
+  const baseUrl = "https://www.timeline-io.com/";
 
   const mainPageIds = [
     "home",
@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const mainPages = mainPageIds.map((id) => ({
-    url: `${baseUrl}/main/${id}`,
+    url: `${baseUrl}main/${id}`,
     lastModified: new Date(),
     changeFrequency: "always" as const,
     priority: 0.9,
@@ -28,43 +28,43 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...mainPages,
     {
-      url: `${baseUrl}/login`,
+      url: `${baseUrl}login`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
-      url: `${baseUrl}/signup`,
+      url: `${baseUrl}signup`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
-      url: `${baseUrl}/help`,
+      url: `${baseUrl}help`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/privacy`,
+      url: `${baseUrl}privacy`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
-      url: `${baseUrl}/termsofuse`,
+      url: `${baseUrl}termsofuse`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
-      url: `${baseUrl}/rules`,
+      url: `${baseUrl}rules`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
-      url: `${baseUrl}/updates`,
+      url: `${baseUrl}updates`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.7,

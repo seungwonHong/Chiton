@@ -1,10 +1,11 @@
 import React from "react";
-import Post from "@/shared/components/post components/Post";
-import SidePanel from "@/shared/components/side panel/SidePanel";
+import Post from "@/shared/components/post/Post";
+import SidePanel from "@/shared/components/side-panel/SidePanel";
 import MobilePostButton from "@/features/main/components/MobilePostButton";
 import ProfileImageComponent from "@/shared/components/ProfileImageComponent";
 import ProfileInfoFilter from "@/features/profile/components/ProfileInfoFilter";
 import ProfileTabButton from "@/features/profile/components/ProfileTabButton";
+import MoreProfileInfo from "@/features/profile/components/MoreProfileInfo";
 
 const Profile = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
@@ -30,6 +31,41 @@ const Profile = async ({ params }: { params: Promise<{ id: string }> }) => {
           </div>
         </div>
 
+        <div className="flex xl:hidden flex-row items-center w-full md:mt-[4.8rem] mt-[3.2rem]">
+          <div className="flex flex-1 flex-col items-center justify-center">
+            <span className="text-[1.4rem] md:text-[1.6rem] font-medium">
+              120
+            </span>
+            <span className="text-foreground text-[1.4rem] md:text-[1.6rem] font-normal">
+              Followers
+            </span>
+          </div>
+          <div className="flex flex-1 flex-col items-center justify-center">
+            <span className="text-[1.4rem] md:text-[1.6rem] font-medium">
+              120
+            </span>
+            <span className="text-foreground text-[1.4rem] md:text-[1.6rem] font-normal">
+              Following
+            </span>
+          </div>
+          <div className="flex flex-1 flex-col items-center justify-center">
+            <span className="text-[1.4rem] md:text-[1.6rem] font-medium">
+              120
+            </span>
+            <span className="text-foreground text-[1.4rem] md:text-[1.6rem] font-normal">
+              Subscribers
+            </span>
+          </div>
+          <div className="flex flex-1 flex-col items-center justify-center">
+            <span className="text-[1.4rem] md:text-[1.6rem] font-medium">
+              120
+            </span>
+            <span className="text-foreground text-[1.4rem] md:text-[1.6rem] font-normal">
+              Subscribing
+            </span>
+          </div>
+        </div>
+
         {/* 팔로잉 & 구독 버튼(자기 자신이 아닌 경우에만 렌더링하도록 해야함) */}
         <ProfileTabButton
           contents={{
@@ -38,6 +74,8 @@ const Profile = async ({ params }: { params: Promise<{ id: string }> }) => {
           }}
           type="profilePage"
         />
+
+        <MoreProfileInfo />
 
         {/* 게시물 필터 */}
         <ProfileInfoFilter />

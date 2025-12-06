@@ -1,10 +1,13 @@
 import React from "react";
-import Post from "@/shared/components/post components/Post";
-import SidePanel from "@/shared/components/side panel/SidePanel";
-import PostFilter from "@/shared/components/post components/PostFilter";
+import Post from "@/shared/components/post/Post";
+import SidePanel from "@/shared/components/side-panel/SidePanel";
+import PostFilter from "@/shared/components/post/PostFilter";
 import { ImagePlus, Pin } from "lucide-react";
 import MobilePostButton from "@/features/main/components/MobilePostButton";
 import ProfileImageComponent from "@/shared/components/ProfileImageComponent";
+import MoreInfoMobile from "@/features/topic/components/MoreInfoMobile";
+import MobileJoinComponent from "@/features/topic/components/MobileJoinComponent";
+import VisibilityAndInvite from "@/features/topic/components/VisibilityAndInvite";
 
 const TopicDetail = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
@@ -34,12 +37,12 @@ const TopicDetail = async ({ params }: { params: Promise<{ id: string }> }) => {
           </h1>
         </div>
 
+        <MobileJoinComponent />
+
         {/* 공개 여부 */}
-        <div className="flex flex-row items-center lg:mt-[2.4rem] md:mt-[2rem] mt-[1.6rem]">
-          <span className="lg:text-[1.6rem] text-[1.4rem] font-normal">
-            🔒 Private
-          </span>
-        </div>
+        <VisibilityAndInvite />
+
+        <MoreInfoMobile />
 
         {/* 포스트 & 사이드 패널 */}
         <div className="relative flex flex-row justify-center w-full 2xl:gap-[7.2rem] lg:gap-[5.6rem] md:gap-[4.8rem] 2xl:mt-[6.4rem] lg:mt-[4.8rem] md:mt-[3.2rem] mt-[1.6rem] z-[110]">
@@ -60,7 +63,7 @@ const TopicDetail = async ({ params }: { params: Promise<{ id: string }> }) => {
                     className="relative border border-topic-detail-pinned-post-border aspect-square 2xl:w-[24rem] lg:w-[20rem] md:w-[18rem] w-[20rem] rounded-[1.4rem] cursor-pointer shrink-0 hover:scale-105 transition-all duration-300 ease-in-out"
                     key={index}
                   >
-                    <div className="absolute left-[0.6rem] right-[0.6rem] bottom-[0.6rem] flex flex-row items-center lg:gap-[0.8rem] md:gap-[0.6rem] gap-[0.4rem] mt-auto">
+                    <div className="absolute left-[0.6rem] right-[0.6rem] bottom-[0.6rem] flex flex-row items-center lg:gap-[0.8rem] md:gap-[0.6rem] gap-[0.6rem] mt-auto">
                       <ProfileImageComponent
                         bgSize="shrink-0 2xl:w-[3.2rem] 2xl:h-[3.2rem] lg:w-[2.8rem] lg:h-[2.8rem] md:w-[2.4rem] md:h-[2.4rem] w-[3.2rem] h-[3.2rem]"
                         defaultProfileSize="shrink-0 2xl:w-[2.8rem] 2xl:h-[2.8rem] lg:w-[2.4rem] lg:h-[2.4rem] md:w-[2rem] md:h-[2rem] w-[2.8rem] h-[2.8rem]"

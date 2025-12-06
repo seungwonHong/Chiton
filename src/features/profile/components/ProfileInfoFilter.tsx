@@ -1,12 +1,30 @@
 "use client";
 import React, { useState } from "react";
 import useSidebarStore from "@/shared/store/sidebarStore";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
 const ProfileInfoFilter = (props: Props) => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const typeFromQuery = searchParams.get("type");
   const { isOpen } = useSidebarStore();
-  const [selectedFilter, setSelectedFilter] = useState("posts");
+  const [selectedFilter, setSelectedFilter] = useState(
+    typeFromQuery || "posts"
+  );
+
+  const handleFilter = async (filter: string) => {
+    setSelectedFilter(filter);
+
+    const params = new URLSearchParams(window.location.search);
+    params.set("type", filter);
+    router.replace(`${pathname}?${params.toString()}`);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    router.refresh();
+  };
 
   return (
     <div
@@ -22,17 +40,17 @@ const ProfileInfoFilter = (props: Props) => {
             ? "bg-[var(--color-button-bg)] text-[var(--color-background)]"
             : "bg-transparent hover:bg-post-filter-background"
         }`}
-        onClick={() => setSelectedFilter("posts")}
+        onClick={() => handleFilter("posts")}
       >
         Posts
       </button>
-      <button
+        <button
         className={`lg:px-[2.4rem] md:px-[1.6rem] px-[2rem] lg:py-[0.6rem] md:py-[0.4rem] py-[0.6rem] lg:rounded-[0.8rem] md:rounded-[0.6rem] rounded-[0.8rem] cursor-pointer 2xl:text-[1.6rem] md:text-[1.4rem] text-[1.4rem] font-normal ${
           selectedFilter === "comments"
             ? "bg-[var(--color-button-bg)] text-[var(--color-background)]"
             : "bg-transparent hover:bg-post-filter-background"
         }`}
-        onClick={() => setSelectedFilter("comments")}
+        onClick={() => handleFilter("comments")}
       >
         Comments
       </button>
@@ -42,9 +60,19 @@ const ProfileInfoFilter = (props: Props) => {
             ? "bg-[var(--color-button-bg)] text-[var(--color-background)]"
             : "bg-transparent hover:bg-post-filter-background"
         }`}
-        onClick={() => setSelectedFilter("topics")}
+        onClick={() => handleFilter("topics")}
       >
         Topics
+      </button>
+      <button
+        className={`lg:px-[2.4rem] md:px-[1.6rem] px-[2rem] lg:py-[0.6rem] md:py-[0.4rem] py-[0.6rem] lg:rounded-[0.8rem] md:rounded-[0.6rem] rounded-[0.8rem] cursor-pointer 2xl:text-[1.6rem] md:text-[1.4rem] text-[1.4rem] font-normal ${
+          selectedFilter === "lectures"
+            ? "bg-[var(--color-button-bg)] text-[var(--color-background)]"
+            : "bg-transparent hover:bg-post-filter-background"
+        }`}
+        onClick={() => handleFilter("lectures")}
+      >
+        Lectures
       </button>
       <button
         className={`lg:px-[2.4rem] md:px-[1.6rem] px-[2rem] lg:py-[0.6rem] md:py-[0.4rem] py-[0.6rem] lg:rounded-[0.8rem] md:rounded-[0.6rem] rounded-[0.8rem] cursor-pointer 2xl:text-[1.6rem] md:text-[1.4rem] text-[1.4rem] font-normal ${
@@ -52,7 +80,7 @@ const ProfileInfoFilter = (props: Props) => {
             ? "bg-[var(--color-button-bg)] text-[var(--color-background)]"
             : "bg-transparent hover:bg-post-filter-background"
         }`}
-        onClick={() => setSelectedFilter("bookmarks")}
+        onClick={() => handleFilter("bookmarks")}
       >
         Bookmarks
       </button>

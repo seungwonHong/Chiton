@@ -62,7 +62,7 @@ const SubscriptionCard = ({
           size === "small"
             ? "bg-var(--button-bg) text-var(--button-text)"
             : "bg-black text-white"
-        } hover:bg-[var(--button-hover)] mx-auto mt-auto w-full cursor-pointer rounded-[0.8rem] py-[1rem] transition-all ease-in-out md:rounded-[0.8rem] md:py-[1rem] lg:rounded-[1.2rem] lg:py-[1.2rem] 2xl:py-[1.8rem] 2xl:text-[2.4rem] lg:text-[1.6rem] md:text-[1.2rem] text-[1.4rem]`}
+        } hover:bg-[#3c3c3c] mx-auto mt-auto w-full cursor-pointer rounded-[0.8rem] py-[1rem] transition-all ease-in-out md:rounded-[0.8rem] md:py-[1rem] lg:rounded-[1.2rem] lg:py-[1.2rem] 2xl:py-[1.8rem] 2xl:text-[2.4rem] lg:text-[1.6rem] md:text-[1.2rem] text-[1.4rem]`}
       >
         {buttonText}
         {type === "subscription" && (

@@ -23,8 +23,8 @@
   --button-hover-transparent: #e8e8e8;
   --landing-tab-button: #eeeeee;
   --landing-tab-button-active: #ffffff;
-  --side-bar-plus-button:rgba(236, 236, 236, 0.5);
-  --side-bar-plus-button-hover:rgba(227, 227, 227, 0.8);
+  --side-bar-plus-button: rgba(236, 236, 236, 0.5);
+  --side-bar-plus-button-hover: rgba(227, 227, 227, 0.8);
 
   /* help card */
   --help-card-background: #f8f8f8;
@@ -72,7 +72,7 @@
   --side-panel-share-button-hover: rgba(210, 210, 210, 0.8);
 
   /* divider */
-  --divide-color: #C8C4C4;
+  --divide-color: #c8c4c4;
 
   /* post filter */
   --post-filter-background: #f5f5f5;
@@ -80,6 +80,7 @@
   /* drop down menu */
   --drop-down-menu-background: rgba(243, 243, 243, 0.5);
   --drop-down-menu-hover: #e5e5e5;
+  --drop-down-menu-border: #e5e5e5;
 
   /* post action bar */
   --post-action-bar-bookmark: #000000;
@@ -88,6 +89,21 @@
   --topic-profile-bg: #e2e2e2;
   --topic-detail-profile-image-bg: #dcdcdc43;
   --topic-detail-pinned-post-border: #f5f5f5;
+
+  /* settings */
+  --settings-section-arrow: #d4d4d4;
+  --settings-section-info: #808080;
+  --settings-section-info-hover: #000000;
+  --settings-section-bg-hover: #ebebeb;
+
+  /* dashboard */
+  --dashboard-card-border: #dfdfdf;
+
+  /* modal */
+  --modal-background: rgba(246, 246, 246, 0.2);
+
+  /* lecture */
+  --lecture-drop-down-icon-background: rgba(223, 223, 223, 0.5);
 }
 
 @theme inline {
@@ -129,7 +145,7 @@
   --color-side-bar-hover: var(--side-bar-hover);
   --color-header-profile-bg: var(--header-profile-bg);
   --color-side-bar-mobile-background: var(--side-bar-mobile-background);
-  --color-side-panel-background: var(--side-panel-background);  
+  --color-side-panel-background: var(--side-panel-background);
   --color-side-panel-hover: var(--side-panel-hover);
   --color-side-panel-share-button: var(--side-panel-share-button);
   --color-side-panel-share-button-hover: var(--side-panel-share-button-hover);
@@ -140,9 +156,19 @@
   --color-post-action-bar-bookmark: var(--post-action-bar-bookmark);
   --color-topic-profile-bg: var(--topic-profile-bg);
   --color-topic-detail-profile-image-bg: var(--topic-detail-profile-image-bg);
-  --color-topic-detail-pinned-post-border: var(--topic-detail-pinned-post-border);
+  --color-topic-detail-pinned-post-border: var(
+    --topic-detail-pinned-post-border
+  );
   --color-side-bar-plus-button: var(--side-bar-plus-button);
   --color-side-bar-plus-button-hover: var(--side-bar-plus-button-hover);
+  --color-drop-down-menu-border: var(--drop-down-menu-border);
+  --color-settings-section-arrow: var(--settings-section-arrow);
+  --color-settings-section-info: var(--settings-section-info);
+  --color-settings-section-info-hover: var(--settings-section-info-hover);
+  --color-settings-section-bg-hover: var(--settings-section-bg-hover);
+  --color-dashboard-card-border: var(--dashboard-card-border);
+  --color-modal-background: var(--modal-background);
+  --color-lecture-drop-down-icon-background: var(--lecture-drop-down-icon-background);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -211,7 +237,7 @@
     --side-panel-hover: #2c2c2c99;
     --side-panel-share-button: rgba(43, 43, 43, 0.5);
     --side-panel-share-button-hover: rgba(51, 51, 51, 0.8);
-    
+
     /* divider */
     --divide-color: #373737;
 
@@ -221,6 +247,7 @@
     /* drop down menu */
     --drop-down-menu-background: rgba(24, 24, 24, 0.7);
     --drop-down-menu-hover: #2d2d2d99;
+    --drop-down-menu-border: #373737;
 
     /* post action bar */
     --post-action-bar-bookmark: #ffffff;
@@ -229,6 +256,21 @@
     --topic-profile-bg: #26262699;
     --topic-detail-profile-image-bg: #50505049;
     --topic-detail-pinned-post-border: #26262699;
+
+    /* settings */
+    --settings-section-arrow: #373737;
+    --settings-section-info: #595959;
+    --settings-section-info-hover: #ffffff;
+    --settings-section-bg-hover: #47474799;
+
+    /* dashboard */
+    --dashboard-card-border: #212121;
+
+    /* modal */
+    --modal-background: rgba(16, 16, 16, 0.2);
+
+    /* lecture */
+    --lecture-drop-down-icon-background: rgba(48, 48, 48, 0.7);
   }
 }
 

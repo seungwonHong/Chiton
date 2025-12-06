@@ -18,6 +18,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     setSideBarDropDownOpen,
     setCommentEditOpen,
     setSideBarProfileDropDownOpen,
+    setActiveDashboardFilter,
+    setManagersModalDropdownOpen,
+    setLectureDropDownOpen,
   } = useDropDownStore();
 
   useEffect(() => {
@@ -38,6 +41,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         setSideBarDropDownOpen(false);
         setCommentEditOpen(null);
         setSideBarProfileDropDownOpen(false);
+        setActiveDashboardFilter(null);
+        setManagersModalDropdownOpen(null);
+        setLectureDropDownOpen(null);
       }}
     >
       <Header />
