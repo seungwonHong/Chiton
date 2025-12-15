@@ -11,16 +11,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const { isOpen, isMobile, setIsOpen } = useSidebarStore();
   const {
     setPostFilterOpen,
-    setEditPostOpen,
-    setSidePanelHeaderDropDownOpen,
     setMobilePostButtonDropDownOpen,
-    setMobileProfileDropDownOpen,
     setSideBarDropDownOpen,
-    setCommentEditOpen,
-    setSideBarProfileDropDownOpen,
-    setActiveDashboardFilter,
     setManagersModalDropdownOpen,
-    setLectureDropDownOpen,
   } = useDropDownStore();
 
   useEffect(() => {
@@ -34,16 +27,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       className="relative flex h-screen w-full 2xl:p-[0.8rem] lg:p-[0.6rem] p-[0.4rem]"
       onClick={() => {
         setPostFilterOpen(false);
-        setEditPostOpen(null);
-        setSidePanelHeaderDropDownOpen(false);
-        setMobilePostButtonDropDownOpen(false);
-        setMobileProfileDropDownOpen(false);
+        setMobilePostButtonDropDownOpen(false); 
         setSideBarDropDownOpen(false);
-        setCommentEditOpen(null);
-        setSideBarProfileDropDownOpen(false);
-        setActiveDashboardFilter(null);
-        setManagersModalDropdownOpen(null);
-        setLectureDropDownOpen(null);
+        setManagersModalDropdownOpen(false);
       }}
     >
       <Header />
@@ -64,7 +50,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           {/* 오버레이 - 사이드바가 열려있을 때만 표시 */}
           {isOpen && (
             <div
-              className="fixed inset-0 h-screen z-[130] bg-[var(--side-bar-mobile-background)] backdrop-blur-sm transition-opacity duration-400 md:hidden"
+              className="fixed inset-0 h-screen z-[150] bg-[var(--side-bar-mobile-background)] backdrop-blur-sm transition-opacity duration-400 md:hidden"
               onClick={() => setIsOpen(false)}
               aria-hidden="true"
               role="button"
@@ -72,7 +58,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           )}
           {/* 사이드바 */}
           <div
-            className={`fixed h-full md:hidden flex flex-col items-center justify-center w-[16rem] transition-all duration-400 ease-in-out z-[140] ${
+            className={`fixed h-full md:hidden flex flex-col items-center justify-center w-[16rem] transition-all duration-400 ease-in-out z-[160] ${
               isOpen ? "translate-x-0" : "translate-x-[-120%]"
             }`}
           >

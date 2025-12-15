@@ -1,8 +1,27 @@
 @import "tailwindcss";
+@plugin "tailwindcss-animate";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Shadcn UI Standard Colors (라이트 모드) */
+  --popover: #fcfcfc;
+  --popover-foreground: #09090b;
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  --card: #ffffff;
+  --card-foreground: #09090b;
+  --primary: #18181b;
+  --primary-foreground: #fafafa;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #18181b;
+  --accent: #f4f4f5; /* 호버 시 배경색 */
+  --accent-foreground: #18181b;
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
+  --ring: #18181b;
+  --radius: 0.5rem;
 
   /* header */
   --header-background: #f4f4f480;
@@ -41,6 +60,7 @@
 
   /* primary color */
   --primary-color: #6299ff;
+  --primary-color-hover: #4a75c5;
 
   /* modal */
   --modal-background: #f6f6f6;
@@ -74,16 +94,17 @@
   /* divider */
   --divide-color: #c8c4c4;
 
+  /* post */
   /* post filter */
   --post-filter-background: #f5f5f5;
+  /* post action bar */
+  --post-action-bar-icon: #454649;
+  --post-action-bar-bookmark: #000000;
 
   /* drop down menu */
   --drop-down-menu-background: rgba(243, 243, 243, 0.5);
   --drop-down-menu-hover: #e5e5e5;
   --drop-down-menu-border: #e5e5e5;
-
-  /* post action bar */
-  --post-action-bar-bookmark: #000000;
 
   /* topics */
   --topic-profile-bg: #e2e2e2;
@@ -107,6 +128,26 @@
 }
 
 @theme inline {
+  /* Shadcn UI Mappings */
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-roboto);
@@ -137,6 +178,7 @@
   --color-input-bg: var(--input-bg);
   --color-input-label: var(--input-label);
   --color-primary-color: var(--primary-color);
+  --color-primary-color-hover: var(--primary-color-hover);
   --color-modal-background: var(--modal-background);
   --color-grid-box-bg: var(--grid-box-bg);
   --color-search-icon: var(--search-icon);
@@ -168,7 +210,31 @@
   --color-settings-section-bg-hover: var(--settings-section-bg-hover);
   --color-dashboard-card-border: var(--dashboard-card-border);
   --color-modal-background: var(--modal-background);
-  --color-lecture-drop-down-icon-background: var(--lecture-drop-down-icon-background);
+  --color-lecture-drop-down-icon-background: var(
+    --lecture-drop-down-icon-background
+  );
+  --color-post-action-bar-icon: var(--post-action-bar-icon);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -177,6 +243,23 @@
     --foreground: #ededed;
     --header-background: #25252580;
     --header-text: #bababa;
+
+    /* Shadcn UI Standard Colors (다크 모드) */
+    --popover: #262626;
+    --popover-foreground: #fafafa;
+    --border: #3c3c3c;
+    --input: #27272a;
+    --card: #09090b;
+    --card-foreground: #fafafa;
+    --primary: #fafafa;
+    --primary-foreground: #18181b;
+    --secondary: #27272a;
+    --secondary-foreground: #fafafa;
+    --accent: #404040; /* 호버 시 배경색 */
+    --accent-foreground: #fafafa;
+    --destructive: #7f1d1d;
+    --destructive-foreground: #fafafa;
+    --ring: #d4d4d8;
 
     /* profile image */
     --profile-default-icon-bg: #6f6f6f99;
@@ -241,8 +324,11 @@
     /* divider */
     --divide-color: #373737;
 
+    /* post */
     /* post filter */
     --post-filter-background: #26262699;
+    /* post action bar icon */
+    --post-action-bar-icon: #9ca3af;
 
     /* drop down menu */
     --drop-down-menu-background: rgba(24, 24, 24, 0.7);

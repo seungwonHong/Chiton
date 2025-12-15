@@ -1,9 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
-import useDropDownStore from "@/shared/store/dropDownStore";
-import DropDownMenu from "@/shared/components/DropDownMenu";
 import { usePathname, useRouter } from "next/navigation";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface Props {
   options: Record<string, number>;
@@ -25,14 +29,9 @@ const DashboardFilter = ({
   );
   const router = useRouter();
   const pathname = usePathname();
-  const { activeDashboardFilter, setActiveDashboardFilter } =
-    useDropDownStore();
-
-  const isOpen = activeDashboardFilter === queryKey;
 
   const handleFilter = (selected: string) => {
     setSelected(selected);
-    setActiveDashboardFilter(null);
     const params = new URLSearchParams(window.location.search);
     const selectedKey = selected; // selected는 현재 키 문자열
     const selectedValue = options[selectedKey]; // options에서 값 가져오기
@@ -94,41 +93,38 @@ const DashboardFilter = ({
   }, []);
 
   return (
-    <div
-      className={`relative flex flex-row gap-[0.4rem] items-center lg:px-[1.6rem] px-[0.8rem] lg:py-[0.6rem] py-[0.4rem] cursor-pointer ${
-        isOpen ? "" : "hover:bg-side-bar-hover"
-      } transition-all duration-300 ease-in-out rounded-[0.4rem] lg:rounded-[0.6rem]`}
-      onClick={(e) => {
-        e.stopPropagation();
-        setActiveDashboardFilter(isOpen ? null : queryKey);
-      }}
-    >
-      <span className={`font-normal ${textClassName}`}>{selected}</span>
-      <ChevronDown className={`${iconClassName}`} strokeWidth={1.5} />
+    <>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <div
+            className={`relative flex flex-row gap-[0.4rem] items-center lg:px-[1.6rem] px-[0.8rem] lg:py-[0.6rem] py-[0.4rem] cursor-pointer hover:bg-side-bar-hover transition-all duration-300 ease-in-out rounded-[0.4rem] lg:rounded-[0.6rem]`}
+          >
+            <span className={`font-normal ${textClassName}`}>{selected}</span>
+            <ChevronDown className={`${iconClassName}`} strokeWidth={1.5} />
+          </div>
+        </DropdownMenuTrigger>
 
-      {isOpen && (
-        <DropDownMenu
-          className="lg:top-[4rem] top-[3.2rem] right-[0.6rem]"
-          align="right"
+        <DropdownMenuContent
+          align="end"
+          side="bottom"
+          className="flex flex-col gap-[0.4rem] w-[14rem] p-[0.4rem] z-[150] border border-border rounded-[0.8rem] bg-popover"
         >
           {Object.keys(options).map((option) => (
-            <div
+            <DropdownMenuItem
               key={option}
-              className={`flex flex-row items-center justify-center lg:px-[3.2rem] md:px-[2.8rem] px-[3.2rem] lg:py-[0.8rem] md:py-[0.6rem] py-[0.8rem] lg:rounded-[1rem] rounded-[0.8rem] w-full ${
-                selected === option
-                  ? "bg-drop-down-menu-hover"
-                  : "hover:bg-drop-down-menu-hover"
-              }`}
               onClick={() => handleFilter(option)}
+              className={`rounded-[0.4rem] py-[0.6rem] px-[0.8rem] w-full md:min-h-[3.2rem] min-h-[4rem] cursor-pointer outline-none ${
+                selected === option ? "bg-accent" : "hover:bg-accent"
+              }`}
             >
-              <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal shrink-0">
+              <span className="text-[1.4rem] font-normal leading-none">
                 {option}
               </span>
-            </div>
+            </DropdownMenuItem>
           ))}
-        </DropDownMenu>
-      )}
-    </div>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </>
   );
 };
 

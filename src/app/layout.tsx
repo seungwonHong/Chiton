@@ -5,7 +5,7 @@ import AOSProvider from "@/features/landing/components/AOSProvider";
 import "aos/dist/aos.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
-import ToastProvider from "@/shared/components/Toaster";
+import { Toaster } from "@/components/ui/sonner";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -122,7 +122,14 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${roboto.variable} ${robotoMono.variable} antialiased`}>
         <AOSProvider>{children}</AOSProvider>
-        <ToastProvider />
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            style: {
+              borderRadius: "0.8rem",
+            },
+          }}
+        />
         <SpeedInsights />
         <Analytics />
       </body>

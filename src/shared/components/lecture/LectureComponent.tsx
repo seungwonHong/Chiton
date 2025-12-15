@@ -1,16 +1,20 @@
 import Image from "next/image";
 import React from "react";
-import ProfileImageComponent from "../ProfileImageComponent";
-import { ArrowBigUp, CalendarFold } from "lucide-react";
+import { ArrowBigUp, CalendarFold, User } from "lucide-react";
 import LectureDropDownControl from "./LectureDropDownControl";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Link from "next/link";
 
 interface Props {
   id: string | null;
 }
 
-const LectureComponent = (props: Props) => {
+const LectureComponent = ({ id }: Props) => {
   return (
-    <div className="flex flex-col w-full hover:bg-side-bar-hover cursor-pointer transition-all duration-500 ease-in-out rounded-[1.6rem] md:p-[0.8rem]">
+    <Link
+      href={`/lecture-detail/${id}`}
+      className="flex flex-col w-full hover:bg-side-bar-hover cursor-pointer transition-all duration-500 ease-in-out rounded-[1.6rem] md:p-[0.8rem]"
+    >
       {/* 썸네일 */}
       <Image
         src="/images/thumbnail_mockup.jpg"
@@ -21,10 +25,16 @@ const LectureComponent = (props: Props) => {
       />
       <div className="flex flex-row items-start 2xl:mt-[2rem] lg:mt-[1.6rem] md:mt-[1.2rem] mt-[0.8rem]">
         {/* 프로필 이미지 */}
-        <ProfileImageComponent
-          bgSize="2xl:w-[4.8rem] 2xl:h-[4.8rem] lg:w-[4rem] lg:h-[4rem] md:w-[3.6rem] md:h-[3.6rem] w-[4rem] h-[4rem] shrink-0"
-          defaultProfileSize="2xl:w-[3.2rem] 2xl:h-[3.2rem] lg:w-[2.8rem] lg:h-[2.8rem] md:w-[2.4rem] md:h-[2.4rem] w-[3rem] h-[3rem]"
-        />
+        <Avatar className="2xl:w-[4.8rem] 2xl:h-[4.8rem] lg:w-[4rem] lg:h-[4rem] md:w-[3.6rem] md:h-[3.6rem] w-[4rem] h-[4rem] shrink-0">
+          <AvatarImage src={"https://github.com/shadcn.png"} alt="Profile" />
+          <AvatarFallback className="bg-header-profile-bg">
+            <User
+              className="lg:w-[2.4rem] lg:h-[2.4rem] md:w-[2.8rem] md:h-[2.8rem] w-[1.6rem] h-[1.6rem] fill-[var(--color-profile-default-icon-bg)]"
+              strokeWidth={0}
+            />
+          </AvatarFallback>
+        </Avatar>
+
         <div className="flex flex-col 2xl:ml-[1.4rem] lg:ml-[1.2rem] md:ml-[0.8rem] ml-[1.2rem]">
           {/* 제목 */}
           <span className="2xl:text-[1.8rem] lg:text-[1.6rem] md:text-[1.4rem] text-[1.6rem] font-medium line-clamp-2">
@@ -60,9 +70,9 @@ const LectureComponent = (props: Props) => {
           </div>
         </div>
         {/* 드롭다운메뉴 호출 아이콘 */}
-        <LectureDropDownControl id={props.id} />
+        <LectureDropDownControl id={id} />
       </div>
-    </div>
+    </Link>
   );
 };
 

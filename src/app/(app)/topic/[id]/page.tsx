@@ -78,7 +78,7 @@ const TopicDetail = async ({ params }: { params: Promise<{ id: string }> }) => {
             </div>
 
             {/* 포스트 필터 */}
-            <PostFilter />
+            {/* <PostFilter /> */}
 
             {/* 포스트 */}
             {Array.from({ length: 5 }).map((_, index) => (

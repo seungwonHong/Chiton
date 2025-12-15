@@ -19,8 +19,8 @@ interface DropDownStore {
   setSideBarProfileDropDownOpen: (isOpen: boolean) => void;
   activeDashboardFilter: string|null;
   setActiveDashboardFilter: (activeDashboardFilter: string | null) => void;
-  managersModalDropdownOpen: string | null;
-  setManagersModalDropdownOpen: (managersModalDropdownOpen: string | null) => void;
+  managersModalDropdownOpen: boolean ;
+  setManagersModalDropdownOpen: (managersModalDropdownOpen: boolean) => void;
   lectureDropDownOpen: string | null;
   setLectureDropDownOpen: (lectureDropDownOpen: string | null) => void;
 }
@@ -49,7 +49,7 @@ const useDropDownStore = create<DropDownStore>((set) => ({
   activeDashboardFilter: null,
   setActiveDashboardFilter: (activeDashboardFilter) =>
     set({ activeDashboardFilter }),
-  managersModalDropdownOpen: null,
+  managersModalDropdownOpen: false,
   setManagersModalDropdownOpen: (managersModalDropdownOpen) =>
     set({ managersModalDropdownOpen }),
   lectureDropDownOpen: null,

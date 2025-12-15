@@ -43,7 +43,7 @@ const Main = async ({
     "2xl:w-[3.6rem] 2xl:h-[3.6rem] lg:w-[3.2rem] lg:h-[3.2rem] md:w-[2.8rem] md:h-[2.8rem] w-[3.2rem] h-[3.2rem]";
 
   return (
-    <div className="relative flex flex-col items-center justify-center 2xl:mt-[6.4rem] md:mt-[5.6rem] mt-[8rem] 2xl:px-[8rem] lg:px-[6rem] md:px-[3.2rem] px-[1.6rem]">
+    <div className="relative flex flex-col items-center justify-center 2xl:mt-[6.4rem] md:mt-[5.6rem] mt-[12rem] 2xl:px-[8rem] lg:px-[6rem] md:px-[3.2rem] px-[1.6rem]">
       <div className="flex flex-col items-start justify-center w-full 2xl:max-w-[150rem] lg:max-w-[130rem] md:max-w-[100rem]">
         {/* 제목 */}
         <div className=" flex flex-row w-full items-center 2xl:gap-[1.6rem] lg:gap-[1.2rem] md:gap-[0.8rem] gap-[0.4rem]">
@@ -58,14 +58,14 @@ const Main = async ({
           {/* 포스트 */}
           <div className="flex flex-col w-full 2xl:max-w-[80rem] lg:max-w-[64rem] md:max-w-[56rem] xl:min-w-[40rem]">
             {/* lg 이하를 위한 탭 버튼 */}
-            <div className="w-full xl:hidden mb-[2rem]">
+            <div className="w-full xl:hidden md:block hidden mb-[2rem]">
               <Suspense fallback={<div></div>}>
                 <TabButton tabs={["Posts", "Topics", "Lectures"]} type="home" />
               </Suspense>
             </div>
 
             {/* 포스트 필터 */}
-            <PostFilter />
+            {/* <PostFilter /> */}
 
             {type === "posts" ? (
               <>
@@ -82,7 +82,7 @@ const Main = async ({
               <>
                 {Array.from({ length: 5 }).map((_, index) => (
                   <React.Fragment key={index}>
-                    <TopicComponent ViewType="mainPage" />
+                    <TopicComponent ViewType="mainPage" id={index.toString()} />
                     {index < 4 && (
                       <div className="2xl:my-[1.4rem] lg:my-[1rem] md:my-[0.8rem] my-[0.6rem] bg-divide-color w-full h-[0.5px]" />
                     )}

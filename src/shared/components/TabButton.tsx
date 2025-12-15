@@ -1,47 +1,14 @@
 "use client";
-import React, { useEffect } from "react";
-import { useTabStore } from "@/features/landing/store/tabButton";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import React from "react";
+import useUrlType from "../hooks/useUrlType";
 
 interface Props {
   tabs: string[];
-  onChange?: (tab: string) => void;
   type: "landing" | "home";
 }
 
 const TabButton = ({ tabs, type }: Props) => {
-  const { activeTab, setActiveTab } = useTabStore();
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  const handleClick = async (tab: string) => {
-    setActiveTab(tab);
-    if (type === "home") {
-      const params = new URLSearchParams(window.location.search);
-      params.set("type", tab.toLowerCase());
-      router.replace(`${pathname}?${params.toString()}`);
-      await new Promise((resolve) => setTimeout(resolve, 0));
-      router.refresh();
-    }
-  };
-
-  // 직접 쿼리스트링 읽어와야 함
-  useEffect(() => {
-    if (type === "home") {
-      const typeParam = searchParams.get("type");
-      if (typeParam) {
-        // 쿼리 파라미터를 직접 읽어서 탭 설정
-        setActiveTab(
-          typeParam === "posts"
-            ? "Posts"
-            : typeParam === "topics"
-            ? "Topics"
-            : "Lectures"
-        );
-      }
-    }
-  }, [type, searchParams.toString(), setActiveTab]);
+  const { activeTab, handleMenu } = useUrlType({ type });
 
   return (
     <div
@@ -54,9 +21,9 @@ const TabButton = ({ tabs, type }: Props) => {
       {tabs.map((tab) => (
         <button
           key={tab}
-          onClick={() => handleClick(tab)}
+          onClick={() => handleMenu(tab.toLowerCase())}
           className={`font-normal hover:text-black dark:hover:text-white hover:bg-[var(--landing-tab-button-active)] ${
-            activeTab === tab
+            activeTab === tab.toLowerCase()
               ? "bg-[var(--landing-tab-button-active)] text-black dark:text-white"
               : "text-gray-500"
           } transition-all ease-in-out cursor-pointer rounded-[0.6rem] ${

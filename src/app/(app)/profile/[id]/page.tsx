@@ -2,10 +2,11 @@ import React from "react";
 import Post from "@/shared/components/post/Post";
 import SidePanel from "@/shared/components/side-panel/SidePanel";
 import MobilePostButton from "@/features/main/components/MobilePostButton";
-import ProfileImageComponent from "@/shared/components/ProfileImageComponent";
 import ProfileInfoFilter from "@/features/profile/components/ProfileInfoFilter";
 import ProfileTabButton from "@/features/profile/components/ProfileTabButton";
 import MoreProfileInfo from "@/features/profile/components/MoreProfileInfo";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { UserPen } from "lucide-react";
 
 const Profile = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
@@ -16,10 +17,19 @@ const Profile = async ({ params }: { params: Promise<{ id: string }> }) => {
         {/* 프로필 헤더 */}
         <div className="flex flex-col">
           <div className="flex flex-row items-center lg:gap-[2.4rem] md:gap-[1.6rem] gap-[1.2rem]">
-            <ProfileImageComponent
-              bgSize="lg:w-[9.6rem] lg:h-[9.6rem] md:w-[8rem] md:h-[8rem] w-[8.8rem] h-[8.8rem]"
-              defaultProfileSize="lg:w-[6.4rem] lg:h-[6.4rem] md:w-[4.8rem] md:h-[4.8rem] w-[6.4rem] h-[6.4rem]"
-            />
+            <Avatar className="lg:w-[6.4rem] lg:h-[6.4rem] md:w-[4.8rem] md:h-[4.8rem] w-[6.4rem] h-[6.4rem] cursor-pointer">
+              <AvatarImage
+                src={"https://github.com/shadcn.png"}
+                alt="Profile"
+              />
+              <AvatarFallback className="bg-header-profile-bg">
+                <UserPen
+                  className="lg:w-[3.2rem] lg:h-[3.2rem] md:w-[2.8rem] md:h-[2.8rem] w-[3.2rem] h-[3.2rem] fill-[var(--color-profile-default-icon-bg)]"
+                  strokeWidth={0}
+                />
+              </AvatarFallback>
+            </Avatar>
+
             <div className="flex flex-col">
               <h1 className="2xl:text-[3.6rem] lg:text-[3rem] md:text-[2.4rem] text-[2.4rem] font-medium">
                 hong.seung.won

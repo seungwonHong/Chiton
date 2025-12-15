@@ -2,6 +2,8 @@ import React from "react";
 import CommentEdit from "./CommentEdit";
 import CommentActionBar from "./CommentActionBar";
 import ProfileImageComponent from "../ProfileImageComponent";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { User } from "lucide-react";
 
 interface Props {
   commentId: number;
@@ -13,10 +15,15 @@ const CommentReply = ({ commentId, triggerReply }: Props) => {
     <div className="flex flex-col w-full">
       <div className="flex flex-row items-start">
         {/* 프로필 사진 */}
-        <ProfileImageComponent
-          bgSize="2xl:w-[4rem] 2xl:h-[4rem] lg:w-[3.6rem] lg:h-[3.6rem] md:w-[3.2rem] md:h-[3.2rem] w-[4rem] h-[4rem]"
-          defaultProfileSize="2xl:w-[3.2rem] 2xl:h-[3.2rem] lg:w-[2.8rem] lg:h-[2.8rem] md:w-[2.4rem] md:h-[2.4rem] w-[3.2rem] h-[3.2rem]"
-        />
+        <Avatar className="2xl:w-[4rem] 2xl:h-[4rem] lg:w-[3.6rem] lg:h-[3.6rem] md:w-[3.2rem] md:h-[3.2rem] w-[4rem] h-[4rem]">
+          <AvatarImage src={"https://github.com/shadcn.png"} alt="Profile" />
+          <AvatarFallback className="bg-header-profile-bg">
+            <User
+              className="2xl:w-[3.2rem] 2xl:h-[3.2rem] lg:w-[2.8rem] lg:h-[2.8rem] md:w-[2.4rem] md:h-[2.4rem] w-[3.2rem] h-[3.2rem] fill-[var(--color-profile-default-icon-bg)]"
+              strokeWidth={0}
+            />
+          </AvatarFallback>
+        </Avatar>
 
         {/* 이름 & 시간 */}
         <div className="flex flex-col 2xl:ml-[1.4rem] lg:ml-[1.2rem] md:ml-[0.8rem] ml-[1.2rem]">

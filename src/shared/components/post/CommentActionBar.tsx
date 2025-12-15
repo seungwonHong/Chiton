@@ -9,9 +9,9 @@ const CommentActionBar = () => {
   const [isLiked, setIsLiked] = useState(false);
 
   return (
-    <div className="flex flex-row items-center 2xl:gap-[3rem] lg:gap-[2.4rem] md:gap-[2rem] gap-[1.6rem] 2xl:mt-[1rem] lg:mt-[0.6rem] mt-[0.4rem]">
+    <div className="flex flex-row items-center 2xl:gap-[2rem] lg:gap-[1.8rem] md:gap-[1.6rem] gap-[1.8rem] 2xl:mt-[1rem] lg:mt-[0.6rem] mt-[0.4rem] text-post-action-bar-icon">
       {/* 좋아요 */}
-      <div className="flex flex-row items-center 2xl:gap-[1rem] lg:gap-[0.8rem] md:gap-[0.6rem] gap-[0.4rem]">
+      <div className="flex flex-row items-center 2xl:gap-[0.6rem] lg:gap-[0.4rem] gap-[0.2rem]">
         <Heart
           className={`2xl:w-[2rem] 2xl:h-[2rem] lg:w-[1.8rem] lg:h-[1.8rem] md:w-[1.6rem] md:h-[1.6rem] w-[2rem] h-[2rem] cursor-pointer ${
             isLiked ? "text-red-500 fill-red-500" : ""
@@ -24,7 +24,7 @@ const CommentActionBar = () => {
         </span>
       </div>
       {/* 댓글 */}
-      <div className="flex flex-row items-center 2xl:gap-[1rem] lg:gap-[0.8rem] md:gap-[0.6rem] gap-[0.4rem]">
+      <div className="flex flex-row items-center 2xl:gap-[0.6rem] lg:gap-[0.4rem] gap-[0.2rem]">
         <MessageCircle
           className="2xl:w-[2rem] 2xl:h-[2rem] lg:w-[1.8rem] lg:h-[1.8rem] md:w-[1.6rem] md:h-[1.6rem] w-[2rem] h-[2rem] cursor-pointer"
           strokeWidth={1.5}
@@ -34,7 +34,7 @@ const CommentActionBar = () => {
         </span>
       </div>
       {/* 인용 */}
-      <div className="flex flex-row items-center 2xl:gap-[1rem] lg:gap-[0.8rem] md:gap-[0.6rem] gap-[0.4rem]">
+      <div className="flex flex-row items-center 2xl:gap-[0.6rem] lg:gap-[0.4rem] gap-[0.2rem]">
         <Quote
           className="2xl:w-[2rem] 2xl:h-[2rem] lg:w-[1.8rem] lg:h-[1.8rem] md:w-[1.6rem] md:h-[1.6rem] w-[2rem] h-[2rem] cursor-pointer"
           strokeWidth={1.5}
@@ -44,7 +44,7 @@ const CommentActionBar = () => {
         </span>
       </div>
       {/* 공유 */}
-      <div className="flex flex-row items-center 2xl:gap-[1rem] lg:gap-[0.8rem] md:gap-[0.6rem] gap-[0.4rem]">
+      <div className="flex flex-row items-center 2xl:gap-[0.6rem] lg:gap-[0.4rem] gap-[0.2rem]">
         <Share
           className="2xl:w-[2rem] 2xl:h-[2rem] lg:w-[1.8rem] lg:h-[1.8rem] md:w-[1.6rem] md:h-[1.6rem] w-[2rem] h-[2rem] cursor-pointer"
           strokeWidth={1.5}

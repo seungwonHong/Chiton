@@ -1,23 +1,30 @@
 import React from "react";
-import { Users } from "lucide-react";
+import { User, Users } from "lucide-react";
 import Image from "next/image";
 import PostActionBar from "./PostActionBar";
 import EditPost from "./EditPost";
-import ProfileImageComponent from "../ProfileImageComponent";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import PostWrapper from "./PostWrapper";
 
 interface Props {
   id: string;
+  postDetail?: boolean;
 }
 
-const Post = ({ id }: Props) => {
+const Post = ({ id, postDetail = false }: Props) => {
   return (
-    <div className="flex flex-col w-full">
+    <PostWrapper postDetail={postDetail} id={id}>
       <div className="flex flex-row items-start">
         {/* 프로필 사진 */}
-        <ProfileImageComponent
-          bgSize="2xl:w-[5.6rem] 2xl:h-[5.6rem] lg:w-[4.8rem] lg:h-[4.8rem] md:w-[4rem] md:h-[4rem] w-[4.8rem] h-[4.8rem]"
-          defaultProfileSize="2xl:w-[3.6rem] 2xl:h-[3.6rem] lg:w-[3.2rem] lg:h-[3.2rem] md:w-[2.8rem] md:h-[2.8rem] w-[3.6rem] h-[3.6rem]"
-        />
+        <Avatar className="2xl:w-[4.8rem] 2xl:h-[4.8rem] lg:w-[4rem] lg:h-[4rem] md:w-[3.6rem] md:h-[3.6rem] w-[4rem] h-[4rem]">
+          <AvatarImage src={"https://github.com/shadcn.png"} alt="Profile" />
+          <AvatarFallback className="bg-header-profile-bg">
+            <User
+              className="lg:w-[2.4rem] lg:h-[2.4rem] md:w-[2.8rem] md:h-[2.8rem] w-[2.4rem] h-[2.4rem] fill-[var(--color-profile-default-icon-bg)]"
+              strokeWidth={0}
+            />
+          </AvatarFallback>
+        </Avatar>
 
         {/* 이름 & 시간 */}
         <div className="flex flex-col 2xl:ml-[1.4rem] lg:ml-[1.2rem] md:ml-[0.8rem] ml-[1.2rem]">
@@ -78,7 +85,7 @@ const Post = ({ id }: Props) => {
 
       {/* 좋아요 & 댓글 & 인용 & 공유 */}
       <PostActionBar />
-    </div>
+    </PostWrapper>
   );
 };
 

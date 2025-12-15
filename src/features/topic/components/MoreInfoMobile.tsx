@@ -25,8 +25,8 @@ const MoreInfoMobile = (props: Props) => {
       {moreInfoOpen && (
         <div className="flex flex-col mt-[1.4rem] lg:px-[1.6rem] px-[0.8rem]">
           <div className="flex flex-row items-center lg:gap-[0.8rem] gap-[0.6rem]">
-            <CalendarPlus className="w-[2rem] h-[2rem]" strokeWidth={1.5} />
-            <span className="lg:text-[1.2rem] font-normal">
+            <CalendarPlus className="w-[2.4rem] h-[2.4rem]" strokeWidth={1.5} />
+            <span className="text-[1.4rem] font-normal">
               Created Aug 14, 2025
             </span>
           </div>

@@ -20,10 +20,18 @@ const ProfileTabButton = ({ contents, type }: Props) => {
         return (
           <button
             key={key}
-            className={`flex-1 w-full border border-[var(--color-button-border)] hover:border-[var(--color-button-hover)] cursor-pointer rounded-[0.8rem] px-[1.6rem] py-[0.8rem] transition-colors duration-300 ease-in-out ${
+            className={`flex-1 w-full cursor-pointer rounded-[0.8rem] px-[1.6rem] py-[0.8rem] border transition-colors duration-300 ease-in-out ${
               isActive
-                ? "text-foreground bg-transparent"
-                : "bg-[var(--color-button-bg)] hover:bg-[var(--color-button-hover)] text-[var(--color-button-text)]"
+                ? `bg-transparent ${
+                    key !== "Subscribe"
+                      ? "text-foreground border-foreground"
+                      : "text-primary-color border-primary-color"
+                  }`
+                : `border-transparent ${
+                    key !== "Subscribe"
+                      ? "bg-[var(--color-button-bg)] hover:bg-[var(--color-button-hover)] text-[var(--color-button-text)]"
+                      : "text-white hover:bg-primary-color-hover bg-primary-color"
+                  }`
             }`}
             onClick={() =>
               setActiveTab((prev) =>
