@@ -4,7 +4,7 @@ import SideBar from "@/shared/components/SideBar";
 import useSidebarStore from "@/shared/store/sidebarStore";
 import useDropDownStore from "@/shared/store/dropDownStore";
 import "./layout.css";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import React from "react";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
@@ -27,12 +27,14 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       className="relative flex h-screen w-full 2xl:p-[0.8rem] lg:p-[0.6rem] p-[0.4rem]"
       onClick={() => {
         setPostFilterOpen(false);
-        setMobilePostButtonDropDownOpen(false); 
+        setMobilePostButtonDropDownOpen(false);
         setSideBarDropDownOpen(false);
         setManagersModalDropdownOpen(false);
       }}
     >
-      <Header />
+      <Suspense fallback={null}>
+        <Header />
+      </Suspense>
       {/* 데스크톱 사이드바 - 항상 렌더링, transform으로 위치 변경 */}
       {!isMobile && (
         <div
