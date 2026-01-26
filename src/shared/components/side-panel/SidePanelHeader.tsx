@@ -9,6 +9,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import useModalStore from "@/shared/store/modalStore";
+import Modal from "../Modal";
+import CreatePostModalContents from "../CreatePostModalContents";
+import useMediaQuery from "@/shared/hooks/useMediaQuery";
+import { useRouter } from "next/navigation";
+import { useTiptapImageStore } from "@/shared/store/tiptapImageStore";
 
 interface SidePanelHeaderProps {
   usage?: string;
@@ -16,6 +22,12 @@ interface SidePanelHeaderProps {
 
 const SidePanelHeader = ({ usage }: SidePanelHeaderProps) => {
   const [bookmarked, setBookmarked] = useState(false);
+  const [openCreatePostModal, setOpenCreatePostModal] = useState(false);
+  const router = useRouter();
+
+  const { setIsOpen } = useModalStore();
+  const {setImageFiles, setImagePreviews} = useTiptapImageStore();
+  const { breakpoint } = useMediaQuery();
 
   const copyURL = async () => {
     try {
@@ -31,9 +43,7 @@ const SidePanelHeader = ({ usage }: SidePanelHeaderProps) => {
     <div className="relative flex flex-row items-center">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <div
-            className="lg:rounded-[0.8rem] rounded-[0.6rem] p-[0.4rem] cursor-pointer hover:bg-side-panel-hover transition-all duration-300 ease-in-out"
-          >
+          <div className="lg:rounded-[0.8rem] rounded-[0.6rem] p-[0.4rem] cursor-pointer hover:bg-side-panel-hover transition-all duration-300 ease-in-out">
             <Plus className="w-[2rem] h-[2rem]" />
           </div>
         </DropdownMenuTrigger>
@@ -42,17 +52,33 @@ const SidePanelHeader = ({ usage }: SidePanelHeaderProps) => {
           side="bottom"
           className="w-[12rem] p-[0.4rem] z-[150] border border-border rounded-[0.8rem] bg-popover"
         >
-          <DropdownMenuItem className="flex items-center rounded-[0.4rem] py-[0.6rem] px-[0.8rem] w-full min-h-[3.2rem] cursor-pointer outline-none hover:bg-accent">
+          <DropdownMenuItem
+            className="flex items-center rounded-[0.4rem] py-[0.6rem] px-[0.8rem] w-full min-h-[3.2rem] cursor-pointer outline-none hover:bg-accent transition-all duration-300 ease-in-out"
+            onClick={() => {
+              setOpenCreatePostModal(true);
+              setIsOpen(true);
+            }}
+          >
             <span className="md:text-[1.4rem] text-[1.6rem] font-normal leading-none">
               Create Post
             </span>
           </DropdownMenuItem>
-          <DropdownMenuItem className="flex items-center rounded-[0.4rem] py-[0.6rem] px-[0.8rem] w-full min-h-[3.2rem] cursor-pointer outline-none hover:bg-accent">
+          <DropdownMenuItem
+            className="flex items-center rounded-[0.4rem] py-[0.6rem] px-[0.8rem] w-full min-h-[3.2rem] cursor-pointer outline-none hover:bg-accent transition-all duration-300 ease-in-out"
+            onClick={() => {
+              router.push("/create-topic");
+            }}
+          >
             <span className="md:text-[1.4rem] text-[1.6rem] font-normal leading-none">
               Create Topic
             </span>
           </DropdownMenuItem>
-          <DropdownMenuItem className="flex items-center rounded-[0.4rem] py-[0.6rem] px-[0.8rem] w-full min-h-[3.2rem] cursor-pointer outline-none hover:bg-accent">
+          <DropdownMenuItem
+            className="flex items-center rounded-[0.4rem] py-[0.6rem] px-[0.8rem] w-full min-h-[3.2rem] cursor-pointer outline-none hover:bg-accent transition-all duration-300 ease-in-out"
+            onClick={() => {
+              router.push("/create-lecture");
+            }}
+          >
             <span className="md:text-[1.4rem] text-[1.6rem] font-normal leading-none">
               Create Lecture
             </span>
@@ -90,6 +116,12 @@ const SidePanelHeader = ({ usage }: SidePanelHeaderProps) => {
           </button>
         )}
       </div>
+
+      {breakpoint === "desktop" && openCreatePostModal && (
+        <Modal onClick={() => { setOpenCreatePostModal(false); setImageFiles([]); setImagePreviews([]); }}>
+          <CreatePostModalContents />
+        </Modal>
+      )}
     </div>
   );
 };

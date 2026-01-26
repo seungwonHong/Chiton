@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   House,
   LogOut,
@@ -28,14 +28,18 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { usePathname } from "next/navigation";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import Modal from "./Modal";
+import CreatePostModalContents from "./CreatePostModalContents";
+import useModalStore from "../store/modalStore";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 const SideBar = () => {
   const { setIsOpen, isMobile, isClicked, setIsClicked } = useSidebarStore();
   const pathname = usePathname();
-  const {
-    sideBarDropDownOpen,
-    setSideBarDropDownOpen,
-  } = useDropDownStore();
+  const { sideBarDropDownOpen, setSideBarDropDownOpen } = useDropDownStore();
+  const [openCreatePostModal, setOpenCreatePostModal] = useState(false);
+  const { setIsOpen: setIsModalOpen } = useModalStore();
+  const { breakpoint } = useMediaQuery();
 
   useEffect(() => {
     const currentPath = window.location.pathname;
@@ -177,9 +181,15 @@ const SideBar = () => {
             <DropdownMenuContent
               align="start"
               side="top"
-              className="w-[18rem] p-[0.4rem] z-[150] border border-border rounded-[0.8rem]"
+              className="w-[14rem] p-[0.4rem] z-[150] border border-border rounded-[0.8rem]"
             >
-              <DropdownMenuItem className="rounded-[0.4rem] py-[0.6rem] px-[0.8rem] w-full min-h-[3.2rem] cursor-pointer">
+              <DropdownMenuItem
+                className="rounded-[0.4rem] py-[0.6rem] px-[0.8rem] w-full min-h-[3.2rem] cursor-pointer"
+                onClick={() => {
+                  setOpenCreatePostModal(true);
+                  setIsModalOpen(true);
+                }}
+              >
                 <span className="md:text-[1.4rem] text-[1.6rem] font-normal leading-none">
                   Create Post
                 </span>
@@ -304,6 +314,12 @@ const SideBar = () => {
           </div>
         </div>
       </div>
+
+      {breakpoint === "tablet" && openCreatePostModal && (
+        <Modal onClick={() => setOpenCreatePostModal(false)}>
+          <CreatePostModalContents />
+        </Modal>
+      )}
     </div>
   );
 };

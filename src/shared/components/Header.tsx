@@ -57,13 +57,14 @@ const Header = () => {
 
   return (
     <div
-      className={`fixed 2xl:left-[0.8rem] lg:left-[0.6rem] md:left-[0.4rem] left-0 2xl:right-[0.8rem] lg:right-[0.6rem] md:right-[0.4rem] right-0 md:px-0 md:py-0 py-[0.6rem] px-[1.6rem]  flex flex-col  ${
+      className={`fixed 2xl:left-[0.8rem] lg:left-[0.6rem] md:left-[0.4rem] left-0 2xl:right-[0.8rem] lg:right-[0.6rem] md:right-[0.4rem] right-0 md:px-0 md:py-0 py-[0.6rem] px-[1.6rem] flex flex-col  ${
         isOpen
           ? "bg-transparent 2xl:top-[0.8rem] lg:top-[0.6rem] top-[0.4rem] md:z-[100] z-[150]"
           : "bg-[var(--background)] top-0 2xl:pt-[0.8rem] lg:pt-[0.6rem] pt-[0.4rem] z-[120]"
       } transition-all ease-in-out ${
         isHeaderVisible ? "translate-y-0" : "-translate-y-full"
       }`}
+      onClick={(e) => e.stopPropagation()}
     >
       <div className="flex flex-row items-center md:justify-normal justify-between">
         <Link

@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useRef, useState } from "react";
 import Post from "@/shared/components/post/Post";
 import SidePanel from "@/shared/components/side-panel/SidePanel";
 import MobilePostButton from "@/features/main/components/MobilePostButton";
@@ -6,10 +7,30 @@ import ProfileInfoFilter from "@/features/profile/components/ProfileInfoFilter";
 import ProfileTabButton from "@/features/profile/components/ProfileTabButton";
 import MoreProfileInfo from "@/features/profile/components/MoreProfileInfo";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { UserPen } from "lucide-react";
+import { RotateCcw, UserPen , Image} from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { useParams } from "next/navigation";
 
-const Profile = async ({ params }: { params: Promise<{ id: string }> }) => {
-  const { id } = await params;
+const Profile = () => {
+  const params = useParams();
+  const id = params.id as string;
+
+  const [profileImageFile, setProfileImageFile] = useState<File | null>(null);
+  const [profileImagePreview, setProfileImagePreview] = useState<string | null>(null);
+  const profileImageInputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleProfileImageClick = () => {
+    profileImageInputRef.current?.click();
+  };
+
+  const handleProfileImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setProfileImageFile(file);
+      setProfileImagePreview(URL.createObjectURL(file));
+    }
+    e.target.value = "";
+  };
 
   return (
     <div className="relative flex flex-col items-center justify-center 2xl:mt-[6.4rem] md:mt-[5.6rem] mt-[8rem] 2xl:px-[8rem] lg:px-[6rem] md:px-[3.2rem] px-[1.6rem]">
@@ -17,9 +38,11 @@ const Profile = async ({ params }: { params: Promise<{ id: string }> }) => {
         {/* 프로필 헤더 */}
         <div className="flex flex-col">
           <div className="flex flex-row items-center lg:gap-[2.4rem] md:gap-[1.6rem] gap-[1.2rem]">
-            <Avatar className="lg:w-[6.4rem] lg:h-[6.4rem] md:w-[4.8rem] md:h-[4.8rem] w-[6.4rem] h-[6.4rem] cursor-pointer">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Avatar className="lg:w-[6.4rem] lg:h-[6.4rem] md:w-[4.8rem] md:h-[4.8rem] w-[6.4rem] h-[6.4rem] cursor-pointer">
               <AvatarImage
-                src={"https://github.com/shadcn.png"}
+                src={profileImagePreview ?? undefined}
                 alt="Profile"
               />
               <AvatarFallback className="bg-header-profile-bg">
@@ -29,6 +52,43 @@ const Profile = async ({ params }: { params: Promise<{ id: string }> }) => {
                 />
               </AvatarFallback>
             </Avatar>
+              </DropdownMenuTrigger>
+
+              <DropdownMenuContent
+                align="start"
+                side="bottom"
+                className="flex flex-col gap-[0.4rem] w-[14rem] p-[0.4rem] z-[150] border border-border rounded-[0.8rem] bg-popover"
+              >
+                <DropdownMenuItem
+                  className={`flex items-center gap-[0.4rem] rounded-[0.4rem] py-[0.6rem] px-[0.8rem] w-full md:min-h-[3.2rem] min-h-[4rem] cursor-pointer outline-none `}
+                  onSelect={() => handleProfileImageClick()}
+                >
+                  <Image className="!w-[1.6rem] !h-[1.6rem]" />
+                  <span className="text-[1.6rem] font-normal leading-none">
+                    Choose File
+                  </span>
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  className={`rounded-[0.4rem] py-[0.6rem] px-[0.8rem] w-full md:min-h-[3.2rem] min-h-[4rem] cursor-pointer outline-none `}
+                  onClick={() => {
+                    setProfileImageFile(null);
+                    setProfileImagePreview(null);
+                  }}
+                >
+                  <RotateCcw className="!w-[1.6rem] !h-[1.6rem]" />
+                  <span className="text-[1.6rem] font-normal leading-none">
+                    Reset Image
+                  </span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <input
+              ref={profileImageInputRef}
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={handleProfileImageChange}
+            />
 
             <div className="flex flex-col">
               <h1 className="2xl:text-[3.6rem] lg:text-[3rem] md:text-[2.4rem] text-[2.4rem] font-medium">
@@ -96,7 +156,7 @@ const Profile = async ({ params }: { params: Promise<{ id: string }> }) => {
             {/* 포스트 */}
             {Array.from({ length: 10 }).map((_, index) => (
               <React.Fragment key={index}>
-                <Post id={index.toString()} />
+                <Post id={index.toString()} link={true} />
                 {index < 9 && (
                   <div className="2xl:my-[2.4rem] lg:my-[2rem] md:my-[1.6rem] my-[1.2rem] bg-divide-color w-full h-[0.5px]" />
                 )}

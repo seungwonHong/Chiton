@@ -7,7 +7,6 @@ import { AudioLines } from "lucide-react";
 import { Paintbrush } from "lucide-react";
 import Post from "@/shared/components/post/Post";
 import SidePanel from "@/shared/components/side-panel/SidePanel";
-import PostFilter from "@/shared/components/post/PostFilter";
 import TabButton from "@/shared/components/TabButton";
 import MobilePostButton from "@/features/main/components/MobilePostButton";
 import TopicComponent from "@/shared/components/topic/TopicComponent";
@@ -71,7 +70,7 @@ const Main = async ({
               <>
                 {Array.from({ length: 5 }).map((_, index) => (
                   <React.Fragment key={index}>
-                    <Post id={index.toString()} />
+                    <Post id={index.toString()} link={true} />
                     {index < 4 && (
                       <div className="2xl:my-[2.4rem] lg:my-[2rem] md:my-[1.6rem] my-[1.2rem] bg-divide-color w-full h-[0.5px]" />
                     )}

@@ -1,10 +1,10 @@
 import React from "react";
-import Post from "@/shared/components/post/Post";
 import SidePanel from "@/shared/components/side-panel/SidePanel";
 import MobilePostButton from "@/features/main/components/MobilePostButton";
 import Input from "@/shared/components/Input";
 import { SendHorizontal } from "lucide-react";
 import Comment from "@/shared/components/post/Comment";
+import PostDetailPost from "@/features/post-detail/components/PostDetailPost";
 
 const PostDetail = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
@@ -16,7 +16,7 @@ const PostDetail = async ({ params }: { params: Promise<{ id: string }> }) => {
         <div className="relative flex flex-row justify-center w-full 2xl:gap-[7.2rem] lg:gap-[5.6rem] md:gap-[4.8rem] 2xl:mt-[6.4rem] lg:mt-[4.8rem] md:mt-[3.2rem] mt-[3.2rem] z-[110]">
           <div className="flex flex-col w-full 2xl:max-w-[80rem] lg:max-w-[64rem] md:max-w-[56rem] xl:min-w-[40rem]">
             {/* 포스트 */}
-            <Post id={id} postDetail={true} />
+            <PostDetailPost id={id} />
 
             {/* 댓글 입력 */}
             <div className="relative">
@@ -33,8 +33,11 @@ const PostDetail = async ({ params }: { params: Promise<{ id: string }> }) => {
 
             {/* 댓글 목록 */}
             <div className="flex flex-col w-full lg:mt-[2.4rem] md:mt-[2rem] mt-[1.6rem] lg:gap-[2.4rem] md:gap-[2rem] gap-[1.6rem]">
+              <span className="text-[1.6rem] font-normal text-[#808080]">
+                200 Comments
+              </span>
               {Array.from({ length: 10 }).map((_, index) => (
-                <Comment key={index} commentId={index} />
+                <Comment key={index} commentId={index} commentReply={true} />
               ))}
             </div>
           </div>

@@ -1,15 +1,19 @@
 "use client";
-import React, { useState, forwardRef, Ref, useRef } from "react";
+import React, { useState, forwardRef, Ref, useRef, useEffect } from "react";
 import { TriangleAlert } from "lucide-react";
 import { Eye } from "lucide-react";
 import { EyeOff } from "lucide-react";
 import { Plus } from "lucide-react";
 import { Search } from "lucide-react";
+import { HexColorPicker } from "react-colorful";
 
-interface Props
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> {
+interface Props extends Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "type"
+> {
   label?: string;
   type: string;
+  colorPicker?: boolean;
   searchIconClassName?: string;
   placeholder?: string;
   inputClassName?: string;
@@ -19,7 +23,10 @@ interface Props
   add?: boolean;
   textareaRows?: number;
   autoResize?: boolean;
+  addIconClassName?: string;
   addHandler?: () => void;
+  colorValue?: string;
+  colorHandler?: (color: string) => void;
 }
 
 const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
@@ -28,6 +35,7 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
       label,
       type,
       placeholder,
+      colorPicker,
       searchIconClassName,
       inputClassName,
       labelClassName,
@@ -37,13 +45,38 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
       addHandler,
       textareaRows = 5,
       autoResize = false,
+      addIconClassName,
+      colorValue,
+      colorHandler,
       ...rest
     },
-    ref
+    ref,
   ) => {
     const [viewPassword, setViewPassword] = useState(false);
     const [inputType, setInputType] = useState(type);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
+    const [colorPickerOpen, setColorPickerOpen] = useState(false);
+    const colorPickerRef = useRef<HTMLDivElement>(null);
+
+    // 팔레트 외부 클릭 시 닫기
+    useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (
+          colorPickerRef.current &&
+          !colorPickerRef.current.contains(event.target as Node)
+        ) {
+          setColorPickerOpen(false);
+        }
+      };
+
+      if (colorPickerOpen) {
+        document.addEventListener("mousedown", handleClickOutside);
+      }
+
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [colorPickerOpen]);
 
     const adjustTextareaHeight = () => {
       const textarea = textareaRef.current;
@@ -65,17 +98,14 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
                 className="cursor-pointer hover:bg-[var(--input-bg)] duration-300 ease-in-out rounded-[0.4rem] p-[0.4rem]"
                 onClick={() => addHandler?.()}
               >
-                <Plus className="2xl:w-[1.6rem] lg:w-[1.2rem] w-[1.6rem] 2xl:h-[1.6rem] lg:h-[1.2rem] h-[1.6rem]" />
+                <Plus
+                  className={`2xl:w-[1.6rem] lg:w-[1.2rem] w-[1.6rem] 2xl:h-[1.6rem] lg:h-[1.2rem] h-[1.6rem] ${addIconClassName}`}
+                />
               </div>
             )}
           </div>
         )}
         <div className="relative">
-          {type === "search" && (
-            <Search
-              className={`absolute top-1/2 -translate-y-1/2 ${searchIconClassName}`}
-            />
-          )}
           {type === "textarea" ? (
             <textarea
               ref={
@@ -103,14 +133,37 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
               {...(rest as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
             />
           ) : (
-            <input
-              ref={ref as React.Ref<HTMLInputElement>}
-              type={inputType}
-              placeholder={placeholder}
-              className={`bg-[var(--color-input-bg)] border-none outline-none ${inputClassName}`}
-              id={label}
-              {...rest}
-            />
+            <div className="relative">
+              {type === "search" && (
+                <Search
+                  className={`absolute top-1/2 -translate-y-1/2 ${searchIconClassName}`}
+                />
+              )}
+              <input
+                ref={ref as React.Ref<HTMLInputElement>}
+                type={inputType}
+                placeholder={placeholder}
+                className={`bg-[var(--color-input-bg)] border-none outline-none ${inputClassName}`}
+                id={label}
+                {...rest}
+              />
+              {/* 태그 색상 선택 */}
+              {colorPicker && (
+                <div
+                  className={`absolute right-[1.6rem] top-1/2 -translate-y-1/2 rounded-full w-[2.4rem] h-[2.4rem] border border-border shrink-0 cursor-pointer`}
+                  style={{ backgroundColor: colorValue }}
+                  onClick={() => setColorPickerOpen(!colorPickerOpen)}
+                />
+              )}
+              {colorPickerOpen && (
+                <div
+                  className="absolute right-[1.6rem] top-[6.4rem] z-50"
+                  ref={colorPickerRef}
+                >
+                  <HexColorPicker color={colorValue} onChange={colorHandler} />
+                </div>
+              )}
+            </div>
           )}
           {type === "password" &&
             (viewPassword === false ? (
@@ -122,7 +175,8 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
               <EyeOff
                 className="absolute right-[1.6rem] top-1/2 -translate-y-1/2 cursor-pointer"
                 onClick={() => (
-                  setViewPassword(false), setInputType("password")
+                  setViewPassword(false),
+                  setInputType("password")
                 )}
               />
             ))}
@@ -137,7 +191,7 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
         )}
       </div>
     );
-  }
+  },
 );
 
 Input.displayName = "Input";

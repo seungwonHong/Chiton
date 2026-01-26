@@ -17,9 +17,9 @@ interface DropDownStore {
   setCommentEditOpen: (commentEditOpen: number | null) => void;
   sideBarProfileDropDownOpen: boolean;
   setSideBarProfileDropDownOpen: (isOpen: boolean) => void;
-  activeDashboardFilter: string|null;
+  activeDashboardFilter: string | null;
   setActiveDashboardFilter: (activeDashboardFilter: string | null) => void;
-  managersModalDropdownOpen: boolean ;
+  managersModalDropdownOpen: boolean;
   setManagersModalDropdownOpen: (managersModalDropdownOpen: boolean) => void;
   lectureDropDownOpen: string | null;
   setLectureDropDownOpen: (lectureDropDownOpen: string | null) => void;
