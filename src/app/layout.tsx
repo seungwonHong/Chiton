@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/images/og-image.png",
+        url: "/images/ChitonShare.png",
         width: 1200,
         height: 630,
         alt: "Chiton - The Best Community for Developers",
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     title: "Chiton - The Best Community for Developers",
     description:
       "Chiton is the best platform for various kind of developers. You can post your ideas, create a topics, recruit people for projects.",
-    images: ["/images/og-image.png"],
+    images: ["/images/ChitonShare.png"],
   },
   robots: {
     index: true,
@@ -91,12 +91,13 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/faviconDark.png",
+        url: "/favicon.png",
         sizes: "48x48",
         type: "image/png",
       },
+
       {
-        url: "/favicon.png",
+        url: "icons/ChitonLogoDark.png",
         sizes: "48x48",
         type: "image/png",
         media: "(prefers-color-scheme: light)",
@@ -108,8 +109,8 @@ export const metadata: Metadata = {
         media: "(prefers-color-scheme: dark)",
       },
     ],
-    shortcut: "/faviconDark.png",
-    apple: "/faviconDark.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
   },
 };
 
