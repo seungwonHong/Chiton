@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   House,
   LogOut,
@@ -19,19 +19,27 @@ import Link from "next/link";
 import useSidebarStore from "../store/sidebarStore";
 import { Plus } from "lucide-react";
 import useDropDownStore from "../store/dropDownStore";
-import DropDownMenu from "./DropDownMenu";
-import ProfileImageComponent from "./ProfileImageComponent";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { usePathname } from "next/navigation";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import Modal from "./Modal";
+import CreatePostModalContents from "./CreatePostModalContents";
+import useModalStore from "../store/modalStore";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 const SideBar = () => {
   const { setIsOpen, isMobile, isClicked, setIsClicked } = useSidebarStore();
   const pathname = usePathname();
-  const {
-    sideBarDropDownOpen,
-    setSideBarDropDownOpen,
-    sideBarProfileDropDownOpen,
-    setSideBarProfileDropDownOpen,
-  } = useDropDownStore();
+  const { sideBarDropDownOpen, setSideBarDropDownOpen } = useDropDownStore();
+  const [openCreatePostModal, setOpenCreatePostModal] = useState(false);
+  const { setIsOpen: setIsModalOpen } = useModalStore();
+  const { breakpoint } = useMediaQuery();
 
   useEffect(() => {
     const currentPath = window.location.pathname;
@@ -155,112 +163,163 @@ const SideBar = () => {
       <div className=" flex-col md:items-center md:justify-center lg:items-start xl:justify-start md:absolute hidden md:flex 2xl:bottom-[1.6rem] lg:bottom-[1.4rem] md:bottom-[1.2rem] bottom-[1rem] left-0 w-full">
         {/* 포스트 & 토픽 추가 버튼 */}
         <div className="md:flex flex-col gap-[1.2rem] hidden relative xl:hidden mb-[1.2rem]">
-          {sideBarDropDownOpen && (
-            <DropDownMenu className="bottom-[4.8rem] left-[2rem]" align="left">
-              <div className="flex flex-row items-center justify-center px-[3.2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out">
-                <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal whitespace-nowrap">
-                  Create Post
-                </span>
-              </div>
-              <div className="flex flex-row items-center justify-center px-[3.2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out">
-                <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal whitespace-nowrap">
-                  Create Topic
-                </span>
-              </div>
-              <div className="flex flex-row items-center justify-center px-[3.2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out">
-                <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal whitespace-nowrap">
-                  Create Lecture
-                </span>
-              </div>
-            </DropDownMenu>
-          )}
-
           <button className="flex flex-row items-center justify-center rounded-full bg-side-bar-plus-button w-[4rem] h-[4rem] cursor-pointer hover:bg-side-bar-plus-button-hover backdrop-blur-sm transition-all duration-300 ease-in-out ">
             <Search className="w-[2rem] h-[2rem]" />
           </button>
 
-          <button
-            className="flex flex-row items-center justify-center rounded-full bg-side-bar-plus-button w-[4rem] h-[4rem] cursor-pointer hover:bg-side-bar-plus-button-hover backdrop-blur-sm transition-all duration-300 ease-in-out "
-            onClick={(e) => {
-              e.stopPropagation();
-              setSideBarDropDownOpen(!sideBarDropDownOpen);
-            }}
+          <DropdownMenu
+            open={sideBarDropDownOpen}
+            onOpenChange={setSideBarDropDownOpen}
           >
-            <Plus className="w-[2.4rem] h-[2.4rem]" />
-          </button>
+            <DropdownMenuTrigger asChild>
+              <div>
+                <button className="flex flex-row items-center justify-center rounded-full bg-side-bar-plus-button w-[4rem] h-[4rem] cursor-pointer hover:bg-side-bar-plus-button-hover backdrop-blur-sm transition-all duration-300 ease-in-out ">
+                  <Plus className="w-[2.4rem] h-[2.4rem]" />
+                </button>
+              </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="start"
+              side="top"
+              className="w-[14rem] p-[0.4rem] z-[150] border border-border rounded-[0.8rem]"
+            >
+              <DropdownMenuItem
+                className="rounded-[0.4rem] py-[0.6rem] px-[0.8rem] w-full min-h-[3.2rem] cursor-pointer"
+                onClick={() => {
+                  setOpenCreatePostModal(true);
+                  setIsModalOpen(true);
+                }}
+              >
+                <span className="md:text-[1.4rem] text-[1.6rem] font-normal leading-none">
+                  Create Post
+                </span>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="rounded-[0.4rem] py-[0.6rem] px-[0.8rem] w-full min-h-[3.2rem] cursor-pointer">
+                <span className="md:text-[1.4rem] text-[1.6rem] font-normal leading-none">
+                  Create Topic
+                </span>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="rounded-[0.4rem] py-[0.6rem] px-[0.8rem] w-full min-h-[3.2rem] cursor-pointer">
+                <span className="md:text-[1.4rem] text-[1.6rem] font-normal leading-none">
+                  Create Lecture
+                </span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
         {/* 프로필 */}
-        <div className="relative flex flex-row items-center ">
+        <div className="relative flex flex-row items-center">
           {/* 드롭다운 메뉴 */}
-          {sideBarProfileDropDownOpen && (
-            <DropDownMenu className="bottom-[5.6rem] left-[0]" align="left">
-              <Link
-                href="/profile/1?type=posts"
-                className={`flex flex-row items-center justify-start gap-[1rem] px-[2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
-              >
-                <User className="w-[2.4rem] h-[2.4rem]" />
-                <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal whitespace-nowrap">
-                  My Profile
-                </span>
-              </Link>
-              <Link
-                href="/dashboard?earnings=30&subscribers=30&new-subscribers=30&churned-subscribers=30&subscriber-table=1"
-                className={`flex flex-row items-center justify-start gap-[1rem] px-[2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
-              >
-                <LayoutGrid className="w-[2.4rem] h-[2.4rem]" />
-                <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal whitespace-nowrap">
-                  Dashboard
-                </span>
-              </Link>
-              <Link
-                href="/admin-dashboard?earnings=30&subscribers=30&new-subscribers=30&churned-subscribers=30&subscriber-table=1"
-                className={`flex flex-row items-center justify-start gap-[1rem] px-[2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
-              >
-                <UserStar className="w-[2.4rem] h-[2.4rem]" />
-                <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal whitespace-nowrap">
-                  Admin Dashboard
-                </span>
-              </Link>
-              <Link
-                href="/settings"
-                className={`flex flex-row items-center justify-start gap-[1rem] px-[2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
-              >
-                <Settings className="w-[2.4rem] h-[2.4rem]" />
-                <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal whitespace-nowrap">
-                  Settings
-                </span>
-              </Link>
-              <div
-                className={`flex flex-row items-center justify-start gap-[1rem] px-[2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
-              >
-                <LogOut className="w-[2.4rem] h-[2.4rem]" />
-                <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal whitespace-nowrap">
-                  Logout
-                </span>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <div>
+                <Avatar className="lg:w-[4rem] lg:h-[4rem] md:w-[4.8rem] md:h-[4.8rem] w-[3.2rem] h-[3.2rem] cursor-pointer">
+                  <AvatarImage
+                    src={"https://github.com/shadcn.png"}
+                    alt="Profile"
+                  />
+                  <AvatarFallback className="bg-header-profile-bg">
+                    <User
+                      className="lg:w-[2.4rem] lg:h-[2.4rem] md:w-[2.8rem] md:h-[2.8rem] w-[1.6rem] h-[1.6rem] fill-[var(--color-profile-default-icon-bg)]"
+                      strokeWidth={0}
+                    />
+                  </AvatarFallback>
+                </Avatar>
               </div>
-            </DropDownMenu>
-          )}
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="start"
+              side="top"
+              className="w-[22.4rem] p-[0.4rem] z-[150] border border-border rounded-[0.8rem]"
+            >
+              <DropdownMenuItem asChild className="rounded-[0.4rem]">
+                <Link
+                  href="/profile/1?type=posts"
+                  className="flex items-center gap-[0.8rem] py-[0.6rem] px-[0.8rem] w-full min-h-[3.2rem]"
+                >
+                  <User className="!h-[1.6rem] !w-[1.6rem]" />
+                  <span className="text-[1.4rem] font-normal leading-none">
+                    My Profile
+                  </span>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                asChild
+                className="rounded-[0.4rem] cursor-pointer"
+              >
+                <Link
+                  href="/dashboard?earnings=30&subscribers=30&new-subscribers=30&churned-subscribers=30&subscriber-table=1"
+                  className="flex items-center gap-[0.8rem] py-[0.6rem] px-[0.8rem] w-full min-h-[3.2rem]"
+                >
+                  <LayoutGrid className="!h-[1.6rem] !w-[1.6rem]" />
+                  <span className="text-[1.4rem] font-normal leading-none">
+                    Dashboard
+                  </span>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                asChild
+                className="rounded-[0.4rem] cursor-pointer"
+              >
+                <Link
+                  href="/admin-dashboard?earnings=30&subscribers=30&new-subscribers=30&churned-subscribers=30&subscriber-table=1"
+                  className="flex items-center gap-[0.8rem] py-[0.6rem] px-[0.8rem] w-full min-h-[3.2rem]"
+                >
+                  <UserStar className="!h-[1.6rem] !w-[1.6rem]" />
+                  <span className="text-[1.4rem] font-normal leading-none">
+                    Admin Dashboard
+                  </span>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                asChild
+                className="rounded-[0.4rem] cursor-pointer"
+              >
+                <Link
+                  href="/settings"
+                  className="flex items-center gap-[0.8rem] py-[0.6rem] px-[0.8rem] w-full min-h-[3.2rem]"
+                >
+                  <Settings className="!h-[1.6rem] !w-[1.6rem]" />
+                  <span className="text-[1.4rem] font-normal leading-none">
+                    Settings
+                  </span>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                asChild
+                className="rounded-[0.4rem] cursor-pointer"
+              >
+                <Link
+                  href="/logout"
+                  className="flex items-center gap-[0.8rem] py-[0.6rem] px-[0.8rem] w-full min-h-[3.2rem]"
+                >
+                  <LogOut className="!h-[1.6rem] !w-[1.6rem]" color="#c91313" />
+                  <span className="text-[1.4rem] text-[#c91313] font-normal leading-none">
+                    Logout
+                  </span>
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
 
-          <ProfileImageComponent
-            bgSize="lg:w-[4rem] lg:h-[4rem] md:w-[4.8rem] md:h-[4.8rem] w-[3.2rem] h-[3.2rem]"
-            defaultProfileSize="lg:w-[2.4rem] lg:h-[2.4rem] md:w-[2.8rem] md:h-[2.8rem] w-[1.6rem] h-[1.6rem]"
-            onClick={(e?: React.MouseEvent<HTMLDivElement>) => {
-              e?.stopPropagation();
-              setSideBarProfileDropDownOpen(!sideBarProfileDropDownOpen);
-            }}
-          />
-
-          <div className="lg:flex hidden flex-col lg:ml-[1.2rem] ml-[0.8rem]">
-            <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.4rem] font-normal">
+          <div className="lg:flex hidden flex-col lg:ml-[1.2rem] ml-[0.8rem] flex-1 min-w-0">
+            <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.4rem] font-normal truncate">
               hong.seung.won
             </span>
-            <span className="2xl:text-[1.2rem] lg:text-[1rem] md:text-[1rem] text-[0.6rem] font-normal">
+            <span className="2xl:text-[1.2rem] lg:text-[1rem] md:text-[1rem] text-[0.6rem] font-normal truncate">
               nonamed814@gmail.com
             </span>
           </div>
         </div>
       </div>
+
+      {breakpoint === "tablet" && openCreatePostModal && (
+        <Modal onClick={() => setOpenCreatePostModal(false)}>
+          <CreatePostModalContents />
+        </Modal>
+      )}
     </div>
   );
 };

@@ -17,6 +17,7 @@ import {
 import DashboardModal from "@/features/dashboard/components/DashboardModal";
 import useModalStore from "@/shared/store/modalStore";
 import TableStatus from "@/features/dashboard/components/TableStatus";
+import { MailPlus } from "lucide-react";
 
 const AdminDashboard = () => {
   const [earningsValue, setEarningsValue] = useState(30);
@@ -89,8 +90,20 @@ const AdminDashboard = () => {
 
         {/* 대시보드 내용 */}
         <div className="2xl:max-w-[120rem] lg:max-w-[100rem] md:max-w-[80rem] w-full flex flex-col mx-auto 2xl:mt-[6.4rem] lg:mt-[4.8rem] md:mt-[3.2rem] mt-[1.6rem]">
+          <div
+            className="flex flex-row w-fit items-center ml-auto cursor-pointer lg:gap-[0.8rem] gap-[0.4rem] py-[0.6rem] px-[1.2rem] rounded-[0.6rem] hover:bg-side-bar-hover"
+            onClick={() => {
+              setIsOpen(true);
+              setModalType("send-emails");
+            }}
+          >
+            <MailPlus className="w-[2rem] h-[2rem] text-[var(--color-dashboard-card-text)]" />
+            <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.4rem] font-medium">
+              Send Emails
+            </span>
+          </div>
           {/* 관리 */}
-          <div className="grid md:grid-cols-2 grid-cols-1 2xl:gap-[2.4rem] lg:gap-[2rem] md:gap-[1.6rem] gap-[1.2rem]">
+          <div className="grid md:grid-cols-2 grid-cols-1 2xl:gap-[2.4rem] lg:gap-[2rem] md:gap-[1.6rem] gap-[1.2rem] mt-[2.4rem]">
             <div
               className="cursor-pointer"
               onClick={() => {

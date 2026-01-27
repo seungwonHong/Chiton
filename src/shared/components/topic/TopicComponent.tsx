@@ -2,14 +2,19 @@ import React from "react";
 import TopicProfileComponent from "./TopicProfileComponent";
 import TechStackComponent from "./TechStackComponent";
 import { Image } from "lucide-react";
+import Link from "next/link";
 
 interface Props {
   ViewType?: "sidePanel" | "mainPage";
+  id: string;
 }
 
-const TopicComponent = ({ ViewType = "sidePanel" }: Props) => {
+const TopicComponent = ({ ViewType = "sidePanel", id }: Props) => {
   return (
-    <div className="flex flex-row items-center justify-between w-full p-[0.8rem] rounded-[1.2rem] cursor-pointer hover:bg-side-panel-hover transition-all duration-300 ease-in-out min-w-0">
+    <Link
+      href={`/topic/${id}`}
+      className="flex flex-row items-center justify-between w-full p-[0.8rem] rounded-[1.2rem] cursor-pointer hover:bg-side-panel-hover transition-all duration-300 ease-in-out min-w-0"
+    >
       {/* 토픽 프로필 */}
       {ViewType === "mainPage" && (
         <div className="flex items-center justify-center aspect-square 2xl:rounded-[1.4rem] lg:rounded-[1.2rem] rounded-[1rem] 2xl:w-[10rem] lg:w-[8rem] md:w-[7.2rem] w-[8rem] bg-topic-detail-profile-image-bg shrink-0 backdrop-blur-lg cursor-pointer">
@@ -57,7 +62,7 @@ const TopicComponent = ({ ViewType = "sidePanel" }: Props) => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

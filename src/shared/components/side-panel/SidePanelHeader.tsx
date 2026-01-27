@@ -1,19 +1,33 @@
 "use client";
 import { CalendarPlus, Plus, Share, Bookmark } from "lucide-react";
 import React, { useState } from "react";
-import { toast } from "react-hot-toast";
-import useDropDownStore from "@/shared/store/dropDownStore";
-import DropDownMenu from "../DropDownMenu";
+import { toast } from "sonner";
 import Button from "../Button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import useModalStore from "@/shared/store/modalStore";
+import Modal from "../Modal";
+import CreatePostModalContents from "../CreatePostModalContents";
+import useMediaQuery from "@/shared/hooks/useMediaQuery";
+import { useRouter } from "next/navigation";
+import { useTiptapImageStore } from "@/shared/store/tiptapImageStore";
 
 interface SidePanelHeaderProps {
   usage?: string;
 }
 
 const SidePanelHeader = ({ usage }: SidePanelHeaderProps) => {
-  const { sidePanelHeaderDropDownOpen, setSidePanelHeaderDropDownOpen } =
-    useDropDownStore();
   const [bookmarked, setBookmarked] = useState(false);
+  const [openCreatePostModal, setOpenCreatePostModal] = useState(false);
+  const router = useRouter();
+
+  const { setIsOpen } = useModalStore();
+  const {setImageFiles, setImagePreviews} = useTiptapImageStore();
+  const { breakpoint } = useMediaQuery();
 
   const copyURL = async () => {
     try {
@@ -27,15 +41,50 @@ const SidePanelHeader = ({ usage }: SidePanelHeaderProps) => {
 
   return (
     <div className="relative flex flex-row items-center">
-      <div
-        className="lg:rounded-[0.8rem] rounded-[0.6rem] p-[0.4rem] cursor-pointer hover:bg-side-panel-hover"
-        onClick={(e) => {
-          e.stopPropagation();
-          setSidePanelHeaderDropDownOpen(!sidePanelHeaderDropDownOpen);
-        }}
-      >
-        <Plus className="w-[2rem] h-[2rem]" />
-      </div>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <div className="lg:rounded-[0.8rem] rounded-[0.6rem] p-[0.4rem] cursor-pointer hover:bg-side-panel-hover transition-all duration-300 ease-in-out">
+            <Plus className="w-[2rem] h-[2rem]" />
+          </div>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          align="start"
+          side="bottom"
+          className="w-[12rem] p-[0.4rem] z-[150] border border-border rounded-[0.8rem] bg-popover"
+        >
+          <DropdownMenuItem
+            className="flex items-center rounded-[0.4rem] py-[0.6rem] px-[0.8rem] w-full min-h-[3.2rem] cursor-pointer outline-none hover:bg-accent transition-all duration-300 ease-in-out"
+            onClick={() => {
+              setOpenCreatePostModal(true);
+              setIsOpen(true);
+            }}
+          >
+            <span className="md:text-[1.4rem] text-[1.6rem] font-normal leading-none">
+              Create Post
+            </span>
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            className="flex items-center rounded-[0.4rem] py-[0.6rem] px-[0.8rem] w-full min-h-[3.2rem] cursor-pointer outline-none hover:bg-accent transition-all duration-300 ease-in-out"
+            onClick={() => {
+              router.push("/create-topic");
+            }}
+          >
+            <span className="md:text-[1.4rem] text-[1.6rem] font-normal leading-none">
+              Create Topic
+            </span>
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            className="flex items-center rounded-[0.4rem] py-[0.6rem] px-[0.8rem] w-full min-h-[3.2rem] cursor-pointer outline-none hover:bg-accent transition-all duration-300 ease-in-out"
+            onClick={() => {
+              router.push("/create-lecture");
+            }}
+          >
+            <span className="md:text-[1.4rem] text-[1.6rem] font-normal leading-none">
+              Create Lecture
+            </span>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
 
       <div className="flex flex-row items-center ml-auto lg:gap-[1.8rem] gap-[1.2rem]">
         <div className="flex flex-row items-center lg:gap-[0.8rem] gap-[0.6rem]">
@@ -51,7 +100,7 @@ const SidePanelHeader = ({ usage }: SidePanelHeaderProps) => {
             </Button>
             <Bookmark
               className={`w-[2.4rem] h-[2.4rem] cursor-pointer ${
-                bookmarked ? "fill-foreground" : ""
+                bookmarked ? "fill-primary-color text-primary-color" : ""
               }`}
               strokeWidth={1.5}
               onClick={() => setBookmarked(!bookmarked)}
@@ -68,33 +117,10 @@ const SidePanelHeader = ({ usage }: SidePanelHeaderProps) => {
         )}
       </div>
 
-      {/* 드롭다운 메뉴 */}
-      {sidePanelHeaderDropDownOpen && (
-        <DropDownMenu className="lg:top-[3.2rem] top-[3rem] left-[0]">
-          <div
-            className={`flex flex-row items-center justify-center lg:px-[3.2rem] md:px-[2.8rem] px-[3.2rem] lg:py-[0.8rem] md:py-[0.6rem] py-[0.8rem] lg:rounded-[1rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
-          >
-            <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal">
-              Create Post
-            </span>
-          </div>
-          {usage !== "topic" && (
-            <div
-              className={`flex flex-row items-center justify-center lg:px-[3.2rem] md:px-[2.8rem] px-[3.2rem] lg:py-[0.8rem] md:py-[0.6rem] py-[0.8rem] lg:rounded-[1rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
-            >
-              <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal">
-                Create Topic
-              </span>
-            </div>
-          )}
-          <div
-            className={`flex flex-row items-center justify-center lg:px-[3.2rem] md:px-[2.8rem] px-[3.2rem] lg:py-[0.8rem] md:py-[0.6rem] py-[0.8rem] lg:rounded-[1rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out`}
-          >
-            <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal">
-              Create Lecture
-            </span>
-          </div>
-        </DropDownMenu>
+      {breakpoint === "desktop" && openCreatePostModal && (
+        <Modal onClick={() => { setOpenCreatePostModal(false); setImageFiles([]); setImagePreviews([]); }}>
+          <CreatePostModalContents />
+        </Modal>
       )}
     </div>
   );

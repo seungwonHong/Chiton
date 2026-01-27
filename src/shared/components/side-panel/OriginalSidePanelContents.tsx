@@ -35,7 +35,7 @@ const OriginalSidePanelContents = () => {
         <div className="flex flex-col gap-[0.4rem] mt-[1.2rem]">
           {Array.from({ length: 5 }).map((_, index) => (
             <React.Fragment key={index}>
-              <TopicComponent />
+              <TopicComponent id={index.toString()} />
               {index < 4 && (
                 <div className="my-[0.4rem] bg-divide-color w-full h-[0.5px]" />
               )}

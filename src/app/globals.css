@@ -1,8 +1,29 @@
 @import "tailwindcss";
+@plugin "tailwindcss-animate";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Shadcn UI Standard Colors (라이트 모드) */
+  --popover: #fcfcfc;
+  --popover-foreground: #09090b;
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  --card: #ffffff;
+  --card-foreground: #09090b;
+  --primary: #18181b;
+  --primary-foreground: #fafafa;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #18181b;
+  --accent: #f4f4f5; /* 호버 시 배경색 */
+  --accent-foreground: #18181b;
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
+  --ring: #18181b;
+  --radius: 0.5rem;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
 
   /* header */
   --header-background: #f4f4f480;
@@ -41,6 +62,10 @@
 
   /* primary color */
   --primary-color: #6299ff;
+  --primary-color-hover: #4a75c5;
+
+  /* lecture */
+  --section-color: #df8846;
 
   /* modal */
   --modal-background: #f6f6f6;
@@ -74,16 +99,17 @@
   /* divider */
   --divide-color: #c8c4c4;
 
+  /* post */
   /* post filter */
   --post-filter-background: #f5f5f5;
+  /* post action bar */
+  --post-action-bar-icon: #454649;
+  --post-action-bar-bookmark: #000000;
 
   /* drop down menu */
   --drop-down-menu-background: rgba(243, 243, 243, 0.5);
   --drop-down-menu-hover: #e5e5e5;
   --drop-down-menu-border: #e5e5e5;
-
-  /* post action bar */
-  --post-action-bar-bookmark: #000000;
 
   /* topics */
   --topic-profile-bg: #e2e2e2;
@@ -104,9 +130,34 @@
 
   /* lecture */
   --lecture-drop-down-icon-background: rgba(223, 223, 223, 0.5);
+
+  /* thread */
+  --thread-background: #d4d4d4;
 }
 
 @theme inline {
+  /* Shadcn UI Mappings */
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-ring: var(--ring);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-roboto);
@@ -137,6 +188,7 @@
   --color-input-bg: var(--input-bg);
   --color-input-label: var(--input-label);
   --color-primary-color: var(--primary-color);
+  --color-primary-color-hover: var(--primary-color-hover);
   --color-modal-background: var(--modal-background);
   --color-grid-box-bg: var(--grid-box-bg);
   --color-search-icon: var(--search-icon);
@@ -168,7 +220,32 @@
   --color-settings-section-bg-hover: var(--settings-section-bg-hover);
   --color-dashboard-card-border: var(--dashboard-card-border);
   --color-modal-background: var(--modal-background);
-  --color-lecture-drop-down-icon-background: var(--lecture-drop-down-icon-background);
+  --color-section-color: var(--section-color);
+  --color-lecture-drop-down-icon-background: var(
+    --lecture-drop-down-icon-background
+  );
+  --color-post-action-bar-icon: var(--post-action-bar-icon);
+  --color-thread-background: var(--thread-background);
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -177,6 +254,25 @@
     --foreground: #ededed;
     --header-background: #25252580;
     --header-text: #bababa;
+
+    /* Shadcn UI Standard Colors (다크 모드) */
+    --popover: #262626;
+    --popover-foreground: #fafafa;
+    --border: #3c3c3c;
+    --input: #27272a;
+    --card: #09090b;
+    --card-foreground: #fafafa;
+    --primary: #fafafa;
+    --primary-foreground: #18181b;
+    --secondary: #27272a;
+    --secondary-foreground: #fafafa;
+    --accent: #404040; /* 호버 시 배경색 */
+    --accent-foreground: #fafafa;
+    --destructive: #7f1d1d;
+    --destructive-foreground: #fafafa;
+    --ring: #d4d4d8;
+    --muted: #27272a;
+    --muted-foreground: #a1a1aa;
 
     /* profile image */
     --profile-default-icon-bg: #6f6f6f99;
@@ -208,6 +304,9 @@
 
     /* primary color */
     --primary-color: #6299ff;
+
+    /* lecture */
+    --section-color: #df8846;
 
     /* modal */
     --modal-background: #101010;
@@ -241,8 +340,11 @@
     /* divider */
     --divide-color: #373737;
 
+    /* post */
     /* post filter */
     --post-filter-background: #26262699;
+    /* post action bar icon */
+    --post-action-bar-icon: #9ca3af;
 
     /* drop down menu */
     --drop-down-menu-background: rgba(24, 24, 24, 0.7);
@@ -271,6 +373,9 @@
 
     /* lecture */
     --lecture-drop-down-icon-background: rgba(48, 48, 48, 0.7);
+
+    /* thread */
+    --thread-background: #414141;
   }
 }
 
@@ -311,4 +416,132 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield; /* Firefox */
+}
+
+/* Placeholder 스타일 (필수) */
+.tiptap p.is-editor-empty:first-child::before {
+  color: #808080; /* 흐린 회색 */
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+/* tiptap heading styles */
+.tiptap h1 {
+  font-size: 3.2rem;
+  line-height: 1.2;
+  font-weight: 700;
+}
+.tiptap h2 {
+  font-size: 2.6rem;
+  line-height: 1.25;
+  font-weight: 700;
+}
+.tiptap h3 {
+  font-size: 2.2rem;
+  line-height: 1.3;
+  font-weight: 600;
+}
+.tiptap h4 {
+  font-size: 1.8rem;
+  line-height: 1.35;
+  font-weight: 600;
+}
+.tiptap h5 {
+  font-size: 1.6rem;
+  line-height: 1.4;
+  font-weight: 600;
+}
+.tiptap h6 {
+  font-size: 1.4rem;
+  line-height: 1.45;
+  font-weight: 600;
+}
+
+.tiptap p {
+  margin: 0.4rem 0;
+}
+
+.tiptap ul {
+  list-style: disc;
+  padding-left: 2rem;
+}
+.tiptap ol {
+  list-style: decimal;
+  padding-left: 2rem;
+}
+.tiptap li {
+  margin: 0.2rem 0;
+}
+
+/* TaskList 불릿(점) 제거 */
+/* TaskList 불릿(점) 제거 */
+.tiptap ul[data-type="taskList"] {
+  list-style: none;
+  padding: 0;
+}
+
+/* TaskItem 레이아웃 */
+/* [중요] 선택자 변경: li에 속성이 없어도 적용되도록 ul을 기준으로 선택 */
+.tiptap ul[data-type="taskList"] li {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* 텍스트 영역 */
+/* [중요] 선택자 변경 및 min-width 추가 */
+.tiptap ul[data-type="taskList"] li > div {
+  flex: 1 1 auto; /* 남은 공간 모두 차지 */
+  min-width: 0; /* 텍스트 줄바꿈 등 레이아웃 깨짐 방지 */
+}
+
+/* 체크리스트 내부 p 태그 마진 제거 (줄 간격 최적화) */
+.tiptap ul[data-type="taskList"] li > div > p {
+  margin: 0;
+}
+
+/* 체크박스 스타일 */
+.tiptap ul[data-type="taskList"] li > label {
+  flex: 0 0 auto; /* 크기 고정 */
+  margin-right: 0.5rem;
+  user-select: none;
+  margin-top: 0.1rem; /* 텍스트와 높이 미세 조정 */
+}
+
+.tiptap ul[data-type="taskList"] li > label input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.tiptap blockquote {
+  border-left: 3px solid var(--color-border);
+  padding-left: 1rem;
+  color: var(--color-muted-foreground);
+}
+
+.tiptap a {
+  color: var(--color-primary-color);
+  text-decoration: underline;
+}
+
+.tiptap code {
+  font-family:
+    var(--font-roboto-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  background: rgba(127, 127, 127, 0.15);
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.4rem;
+}
+
+.tiptap pre {
+  font-family:
+    var(--font-roboto-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  background: rgba(127, 127, 127, 0.15);
+  padding: 1rem;
+  border-radius: 0.8rem;
+  overflow-x: auto;
+}
+.tiptap pre code {
+  background: transparent;
+  padding: 0;
 }

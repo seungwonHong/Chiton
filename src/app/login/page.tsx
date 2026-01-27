@@ -13,7 +13,7 @@ const Login = () => {
         <LoginComponent />
 
         <span className="2xl:text-[1.4rem] text-[1.2rem] text-normal lg:mt-[2rem] mt-[1.6rem]">
-          New to TimeLine-io?{" "}
+          New to Chiton?
           <Link href="/signup" className="text-[var(--color-primary-color)]">
             Sign up
           </Link>

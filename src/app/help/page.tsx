@@ -6,10 +6,10 @@ import { SendHorizontal } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "TimeLine-io - Help",
-  description: "Find help, report bugs, and request features on TimeLine-io.",
+  title: "Chiton - Help",
+  description: "Find help, report bugs, and request features on Chiton.",
   alternates: {
-    canonical: "https://www.timeline-io.com/help",
+    canonical: "https://www.Chiton.io/help",
   },
 };
 
@@ -35,12 +35,12 @@ const Help = () => {
               className="2xl:w-[72px] 2xl:h-[72px] lg:w-[64px] lg:h-[64px] md:w-[40px] md:h-[40px] w-[42px] h-[42px] dark:block hidden"
             />
             <span className="2xl:text-[6.4rem] lg:text-[4.8rem] md:text-[3.2rem] text-[3.6rem] font-normal">
-              TimeLine-io
+              Chiton
             </span>
           </Link>
 
           <p className="text-center text-gray-600 dark:text-gray-400 2xl:text-[2rem] lg:text-[1.6rem] md:text-[1.4rem] text-[1.4rem] mt-6 2xl:w-[120rem] lg:w-[80rem] md:w-[64rem] w-[36rem] mx-auto">
-            Welcome to TimeLine-io’s Help page. You can report bugs or send simple
+            Welcome to Chiton’s Help page. You can report bugs or send simple
             feature and support requests directly to our team. Your feedback
             helps us improve and deliver a better experience.
           </p>

@@ -54,21 +54,21 @@ const Header = () => {
             }
           >
             <img
-              src="/icons/LogoBlack.png"
+              src="/icons/ChitonLogoDark.png"
               alt="logo light"
-              className="2xl:w-[56px] 2xl:h-[56px] lg:w-[48px] lg:h-[48px] md:w-[36px] md:h-[36px] w-[40px] h-[40px] dark:hidden block"
+              className="2xl:w-[36px] 2xl:h-[36px] lg:w-[32px] lg:h-[32px] md:w-[28px] md:h-[28px] w-[32px] h-[32px] dark:hidden block"
             />
             <img
-              src="/icons/LogoWhite.png"
+              src="/icons/ChitonLogoWhite.png"
               alt="logo dark"
-              className="2xl:w-[56px] 2xl:h-[56px] lg:w-[48px] lg:h-[48px] md:w-[36px] md:h-[36px] w-[40px] h-[40px] dark:block hidden"
+              className="2xl:w-[36px] 2xl:h-[36px] lg:w-[32px] lg:h-[32px] md:w-[28px] md:h-[28px] w-[32px] h-[32px] dark:block hidden"
             />
           </motion.div>
         </AnimatePresence>
       ) : (
         // 맨 위일 때 텍스트
         <span className="2xl:text-[2.4rem] lg:text-[2rem] md:text-[2rem] text-[2rem] font-medium">
-          TimeLine-io
+          Chiton
         </span>
       )}
 

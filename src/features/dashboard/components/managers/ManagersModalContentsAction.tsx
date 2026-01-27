@@ -1,8 +1,13 @@
 "use client";
-import DropDownMenu from "@/shared/components/DropDownMenu";
 import React, { useState } from "react";
 import useDropDownStore from "@/shared/store/dropDownStore";
 import { ChevronsUpDown } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface Props {
   name: string;
@@ -12,61 +17,70 @@ interface Props {
 const ManagersModalContentsAction = ({ name, role }: Props) => {
   const { setManagersModalDropdownOpen, managersModalDropdownOpen } =
     useDropDownStore();
-  const isOpen = managersModalDropdownOpen === name;
   const [currentRole, setCurrentRole] = useState(role);
 
   return (
-    <div
-      className="relative flex flex-row items-center cursor-pointer px-[1rem] py-[0.5rem] rounded-[0.4rem] hover:bg-side-bar-hover w-fit pointer-events-auto"
-      onClick={(e) => {
-        e.stopPropagation();
-        setManagersModalDropdownOpen(isOpen ? null : name);
-      }}
-    >
-      <span>{currentRole}</span>
-      <ChevronsUpDown className="w-[2rem] h-[2rem]" />
-
-      {isOpen && (
-        <DropDownMenu className="top-[4rem] right-[0]" align="right">
+    <>
+      <DropdownMenu onOpenChange={() => setManagersModalDropdownOpen(true)}>
+        <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
           <div
-            className={`flex flex-row items-center justify-center gap-[1rem] px-[2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out ${
-              currentRole === "User"
-                ? "bg-drop-down-menu-hover"
-                : "hover:bg-drop-down-menu-hover"
+            className={`flex flex-row items-center cursor-pointer px-[1rem] py-[0.5rem] rounded-[0.4rem] w-fit pointer-events-auto ${
+              managersModalDropdownOpen ? "" : "hover:bg-side-bar-hover"
             }`}
-            onClick={() => setCurrentRole("User")}
+          >
+            <span>{currentRole}</span>
+            <ChevronsUpDown className="w-[2rem] h-[2rem]" />
+          </div>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          align="end"
+          side="bottom"
+          className="flex flex-col gap-[0.4rem] w-[14rem] p-[0.4rem] z-[300] border border-border rounded-[0.8rem]"
+        >
+          <DropdownMenuItem
+            className={`flex items-center gap-[0.8rem] rounded-[0.4rem] cursor-pointer md:min-h-[3.2rem] min-h-[4rem] ${
+              currentRole === "User" ? "bg-accent" : "hover:bg-accent"
+            }`}
+            onClick={() => {
+              setCurrentRole("User");
+              setManagersModalDropdownOpen(false);
+            }}
           >
             <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal whitespace-nowrap">
               User
             </span>
-          </div>
-          <div
-            className={`flex flex-row items-center justify-center gap-[1rem] px-[2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out ${
-              currentRole === "Manager"
-                ? "bg-drop-down-menu-hover"
-                : "hover:bg-drop-down-menu-hover"
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            className={`flex items-center gap-[0.8rem] rounded-[0.4rem] cursor-pointer md:min-h-[3.2rem] min-h-[4rem] ${
+              currentRole === "Manager" ? "bg-accent" : "hover:bg-accent"
             }`}
-            onClick={() => setCurrentRole("Manager")}
+            onClick={() => {
+              setCurrentRole("Manager");
+              setManagersModalDropdownOpen(false);
+            }}
           >
             <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal whitespace-nowrap">
               Manager
             </span>
-          </div>
-          <div
-            className={`flex flex-row items-center justify-center gap-[1rem] px-[2rem] py-[0.8rem] rounded-[0.8rem] w-full hover:bg-drop-down-menu-hover cursor-pointer transition-all duration-300 ease-in-out ${
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            className={`flex items-center gap-[0.8rem] rounded-[0.4rem] cursor-pointer md:min-h-[3.2rem] min-h-[4rem] ${
               currentRole === "Supreme Manager"
-                ? "bg-drop-down-menu-hover"
-                : "hover:bg-drop-down-menu-hover"
+                ? "bg-accent"
+                : "hover:bg-accent"
             }`}
-            onClick={() => setCurrentRole("Supreme Manager")}
+            onClick={() => {
+              setCurrentRole("Supreme Manager");
+              setManagersModalDropdownOpen(false);
+            }}
           >
             <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.6rem] font-normal whitespace-nowrap">
               Supreme Manager
             </span>
-          </div>
-        </DropDownMenu>
-      )}
-    </div>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </>
   );
 };
 

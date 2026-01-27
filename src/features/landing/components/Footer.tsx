@@ -50,13 +50,13 @@ const Footer = () => {
             Connect
           </span>
           <Link
-            href="https://x.com/TimeLine_io"
+            href="https://x.com/Chiton_io"
             className="2xl:text-[2rem] md:text-[1.4rem] text-[1.6rem] font-normal text-[#808080] hover:text-foreground transition-colors duration-300 ease-in-out w-fit"
           >
             X
           </Link>
           <a
-            href="https://www.instagram.com/timeline_io.official"
+            href="https://www.instagram.com/chiton_io.official"
             className="2xl:text-[2rem] md:text-[1.4rem] text-[1.6rem] font-normal text-[#808080] hover:text-foreground transition-colors duration-300 ease-in-out w-fit"
           >
             Instagram
@@ -75,7 +75,7 @@ const Footer = () => {
 
         <div className="md:flex hidden items-center justify-center">
           <span className="2xl:text-[2rem] lg:text-[1.4rem] text-[1.2rem] font-normal font-robotoMono 2xl:w-[28rem] lg:w-[24rem] md:w-[15rem] w-[10rem] text-center">
-            Designed and built by 'TimeLine-io'
+            Designed and built by 'Chiton'
           </span>
         </div>
 
@@ -88,7 +88,7 @@ const Footer = () => {
         {/* 모바일일 때 */}
         <div className="flex items-center justify-center md:hidden">
           <span className="text-[1.2rem] font-normal font-robotoMono w-[16rem] text-center">
-            Designed and built by 'TimeLine-io'
+            Designed and built by 'Chiton'
           </span>
         </div>
 

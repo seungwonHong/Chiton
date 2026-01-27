@@ -6,11 +6,11 @@ import UpdateComponent from "@/features/landing/components/UpdateComponent";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "TimeLine-io - Updates",
+  title: "Chiton - Updates",
   description:
     "We publish new features, improvements, deprecations, and policy changes here. Each update includes a brief summary, the effective date, and links to learn more or adjust settings.",
   alternates: {
-    canonical: "https://www.timeline-io.com/updates",
+    canonical: "https://www.Chiton.io/updates",
   },
 };
 const Updates = () => {
