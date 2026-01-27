@@ -6,16 +6,16 @@ const FooterHeader = () => {
     <header className="fixed top-0 left-0 w-full lg:px-[12rem] md:px-[3.2rem] px-[1.6rem] flex flex-row items-center justify-between 2xl:mt-[3.2rem] lg:mt-[2.4rem] md:mt-[1.6rem] mt-[1rem]">
       <Link href="/" className="cursor-pointer dark:hidden block">
         <img
-          src="/icons/LogoBlack.png"
+          src="/icons/ChitonLogoDark.png"
           alt="logo"
-          className="2xl:w-[56px] 2xl:h-[56px] lg:w-[48px] lg:h-[48px] md:w-[36px] md:h-[36px] w-[40px] h-[40px]"
+          className="2xl:w-[36px] 2xl:h-[36px] lg:w-[32px] lg:h-[32px] md:w-[28px] md:h-[28px] w-[32px] h-[32px]"
         />
       </Link>
       <Link href="/" className="cursor-pointer dark:block hidden">
         <img
-          src="/icons/LogoWhite.png"
+          src="/icons/ChitonLogoWhite.png"
           alt="logo"
-          className="2xl:w-[56px] 2xl:h-[56px] lg:w-[48px] lg:h-[48px] md:w-[36px] md:h-[36px] w-[40px] h-[40px] "
+          className="2xl:w-[36px] 2xl:h-[36px] lg:w-[32px] lg:h-[32px] md:w-[28px] md:h-[28px] w-[32px] h-[32px] "
         />
       </Link>
       <Link

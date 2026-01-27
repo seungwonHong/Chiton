@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Chiton - Help",
   description: "Find help, report bugs, and request features on Chiton.",
   alternates: {
-    canonical: "https://www.Chiton.io/help",
+    canonical: "https://www.chiton.io/help",
   },
 };
 
@@ -25,14 +25,14 @@ const Help = () => {
             className="flex flex-row items-center justify-center 2xl:gap-[1.6rem] lg:gap-[1rem] md:gap-[0.8rem] gap-[0.6rem]"
           >
             <img
-              src="/icons/LogoBlack.png"
+              src="/icons/ChitonLogoDark.png"
               alt="logo"
-              className="2xl:w-[72px] 2xl:h-[72px] lg:w-[64px] lg:h-[64px] md:w-[40px] md:h-[40px] w-[42px] h-[42px] dark:hidden block"
+              className="2xl:w-[52px] 2xl:h-[52px] lg:w-[48px] lg:h-[48px] md:w-[36px] md:h-[36px] w-[40px] h-[40px] dark:hidden block"
             />
             <img
-              src="/icons/LogoWhite.png"
+              src="/icons/ChitonLogoWhite.png"
               alt="logo"
-              className="2xl:w-[72px] 2xl:h-[72px] lg:w-[64px] lg:h-[64px] md:w-[40px] md:h-[40px] w-[42px] h-[42px] dark:block hidden"
+              className="2xl:w-[52px] 2xl:h-[52px] lg:w-[48px] lg:h-[48px] md:w-[36px] md:h-[36px] w-[40px] h-[40px] dark:block hidden"
             />
             <span className="2xl:text-[6.4rem] lg:text-[4.8rem] md:text-[3.2rem] text-[3.6rem] font-normal">
               Chiton
@@ -48,14 +48,14 @@ const Help = () => {
           <div className="flex flex-col 2xl:rounded-[1.6rem] lg:rounded-[1.2rem] md:rounded-[1rem] rounded-[0.8rem] 2xl:w-[100rem] lg:w-[60rem] md:w-[48rem] w-[36rem] mx-auto bg-help-card-background 2xl:mt-[6rem] lg:mt-[4rem] md:mt-[2.4rem] mt-[3.6rem] shadow-lg">
             <div className="w-full flex flex-row items-center 2xl:gap-[1rem] lg:gap-[0.8rem] md:gap-[0.6rem] gap-[0.4rem] 2xl:rounded-t-[1.6rem] lg:rounded-t-[1.2rem] md:rounded-t-[1rem] rounded-t-[0.8rem] 2xl:p-[2rem] lg:p-[1.6rem] md:p-[1.2rem] p-[0.8rem]">
               <img
-                src="/icons/LogoBlack.png"
+                src="/icons/ChitonLogoDark.png"
                 alt="logo"
-                className="2xl:w-[48px] 2xl:h-[48px] lg:w-[32px] lg:h-[32px] md:w-[24px] md:h-[24px] w-[30px] h-[30px] dark:hidden block"
+                className="2xl:w-[32px] 2xl:h-[32px] lg:w-[28px] lg:h-[28px] md:w-[20px] md:h-[20px] w-[24px] h-[24px] dark:hidden block"
               />
               <img
-                src="/icons/LogoWhite.png"
+                src="/icons/ChitonLogoWhite.png"
                 alt="logo"
-                className="2xl:w-[48px] 2xl:h-[48px] lg:w-[32px] lg:h-[32px] md:w-[24px] md:h-[24px] w-[30px] h-[30px] dark:block hidden"
+                className="2xl:w-[32px] 2xl:h-[32px] lg:w-[28px] lg:h-[28px] md:w-[20px] md:h-[20px] w-[24px] h-[24px] dark:block hidden"
               />
               <span className="2xl:text-[2rem] lg:text-[1.6rem] md:text-[1.4rem] text-[1.8rem] font-medium line-clamp-1 ">
                 Bug Reports, Feedback & Support Requests
