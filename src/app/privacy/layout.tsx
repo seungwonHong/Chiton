@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description:
     "Chiton's privacy policy explains how we collect, use, store, delete, and safeguard your information.",
   alternates: {
-    canonical: "https://www.Chiton.io/privacy",
+    canonical: "https://www.chiton.io/privacy",
   },
 };
 

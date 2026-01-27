@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "Chiton's terms of use govern your access to and use of our platform.",
   alternates: {
-    canonical: "https://www.Chiton.io/termsofuse",
+    canonical: "https://www.chiton.io/termsofuse",
   },
 };
 

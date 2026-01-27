@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Chiton Team" }],
   creator: "Chiton",
   publisher: "Chiton",
-  metadataBase: new URL("https://www.Chiton.io/"),
+  metadataBase: new URL("https://www.chiton.io/"),
   category: "technology",
   applicationName: "Chiton - The Best Community for Developers",
 
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     title: "Chiton - The Best Community for Developers",
     description:
       "Chiton is the best platform for various kind of developers. You can post your ideas, create a topics, recruit people for projects.",
-    url: "https://www.Chiton.io/",
+    url: "https://www.chiton.io/",
     siteName: "Chiton - The Best Community for Developers",
     locale: "en_US",
     images: [
@@ -85,7 +85,7 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: "https://www.Chiton.io/",
+    canonical: "https://www.chiton.io/",
   },
 
   icons: {

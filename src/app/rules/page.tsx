@@ -6,9 +6,9 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Chiton - Rules",
-  description: "Follow the rules to keep TimeLine safe and high‑quality. Violations may lead to removal or suspension—even without a report.",
+  description: "Follow the rules to keep Chiton safe and high‑quality. Violations may lead to removal or suspension—even without a report.",
   alternates: {
-    canonical: "https://www.Chiton.io/rules",
+    canonical: "https://www.chiton.io/rules",
   },
 };
 
@@ -20,19 +20,17 @@ const Rules = () => {
 
         <div className="flex md:flex-row flex-col md:items-start items-center justify-center 2xl:mt-[16rem] lg:mt-[12rem] md:mt-[10rem] mt-[8rem] 2xl:gap-[10rem] lg:gap-[6.8rem] gap-[4.8rem]">
           <div className="flex flex-col md:items-start items-center justify-center">
-            <div className="flex flex-row">
-              <div
-                className="flex flex-row items-center justify-center 2xl:gap-[1.6rem] lg:gap-[1rem] md:gap-[0.8rem] gap-[0.6rem]"
-              >
+            <div className="flex flex-row 2xl:gap-[1.6rem] lg:gap-[1rem] md:gap-[0.8rem] gap-[0.6rem]">
+              <div className="flex flex-row items-center justify-center ">
                 <img
-                  src="/icons/LogoBlack.png"
+                  src="/icons/ChitonLogoDark.png"
                   alt="logo"
                   className="2xl:w-[72px] 2xl:h-[72px] lg:w-[64px] lg:h-[64px] md:w-[48px] md:h-[48px] w-[42px] h-[42px] dark:hidden block"
                 />
                 <img
-                  src="/icons/LogoWhite.png"
+                  src="/icons/ChitonLogoWhite.png"
                   alt="logo"
-                  className="2xl:w-[72px] 2xl:h-[72px] lg:w-[64px] lg:h-[64px] md:w-[48px] md:h-[48px] w-[42px] h-[42px] dark:block hidden"
+                  className="2xl:w-[52px] 2xl:h-[52px] lg:w-[48px] lg:h-[48px] md:w-[36px] md:h-[36px] w-[40px] h-[40px] dark:block hidden"
                 />
               </div>
               <span className="2xl:text-[6.4rem] lg:text-[4.8rem] md:text-[3.2rem] text-[3.6rem] font-normal">
@@ -40,9 +38,8 @@ const Rules = () => {
               </span>
             </div>
             <span className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.4rem] font-normal 2xl:w-[60rem] lg:w-[40rem] md:w-[32rem] w-[36rem] md:text-start text-center">
-              Follow the rules to keep Chiton safe and high‑quality.
-              Violations may lead to removal or suspension—even without a
-              report.
+              Follow the rules to keep Chiton safe and high‑quality. Violations
+              may lead to removal or suspension—even without a report.
             </span>
           </div>
 
@@ -54,10 +51,10 @@ const Rules = () => {
               </h3>
               <div className="2xl:text-[1.6rem] md:text-[1.4rem] text-[1rem] font-normal">
                 <p>
-                  Chiton is a developer community. Clear rules keep the
-                  platform safe, useful, and respectful. Following them protects
-                  users' privacy and security, maintains content quality, and
-                  ensures fair participation. Violations may lead to removal,
+                  Chiton is a developer community. Clear rules keep the platform
+                  safe, useful, and respectful. Following them protects users'
+                  privacy and security, maintains content quality, and ensures
+                  fair participation. Violations may lead to removal,
                   limitation, or suspension—even without a report.
                 </p>
               </div>

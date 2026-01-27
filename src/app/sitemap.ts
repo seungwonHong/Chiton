@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://www.Chiton.io/";
+  const baseUrl = "https://www.chiton.io/";
 
   const mainPageIds = [
     "home",
