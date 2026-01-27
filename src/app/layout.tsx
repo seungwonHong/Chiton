@@ -20,15 +20,15 @@ const robotoMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TimeLine-io - The Best Community for Developers",
+  title: "Chiton - The Best Community for Developers",
   description:
-    "TimeLine-io is the best platform for various kind of developers. You can post your ideas, create a topics, recruit people for projects.",
+    "Chiton is the best platform for various kind of developers. You can post your ideas, create a topics, recruit people for projects.",
   keywords: [
-    "TimeLine-io",
-    "Timeline",
-    "Timeline-io",
-    "Timeline-io Official",
-    "Timeline-io Official Website",
+    "Chiton",
+    "Chiton IO",
+    "Chiton",
+    "Chiton Official",
+    "Chiton Official Website",
     "developer platform",
     "community for developers",
     "community for video creators",
@@ -41,35 +41,35 @@ export const metadata: Metadata = {
     "tech community",
     "topic creation",
   ],
-  authors: [{ name: "TimeLine-io Team" }],
-  creator: "TimeLine-io",
-  publisher: "TimeLine-io",
-  metadataBase: new URL("https://www.timeline-io.com/"),
+  authors: [{ name: "Chiton Team" }],
+  creator: "Chiton",
+  publisher: "Chiton",
+  metadataBase: new URL("https://www.Chiton.io/"),
   category: "technology",
-  applicationName: "TimeLine-io - The Best Community for Developers",
+  applicationName: "Chiton - The Best Community for Developers",
 
   openGraph: {
     type: "website",
-    title: "TimeLine-io - The Best Community for Developers",
+    title: "Chiton - The Best Community for Developers",
     description:
-      "TimeLine-io is the best platform for various kind of developers. You can post your ideas, create a topics, recruit people for projects.",
-    url: "https://www.timeline-io.com/",
-    siteName: "TimeLine-io - The Best Community for Developers",
+      "Chiton is the best platform for various kind of developers. You can post your ideas, create a topics, recruit people for projects.",
+    url: "https://www.Chiton.io/",
+    siteName: "Chiton - The Best Community for Developers",
     locale: "en_US",
     images: [
       {
         url: "/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "TimeLine-io - The Best Community for Developers",
+        alt: "Chiton - The Best Community for Developers",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "TimeLine-io - The Best Community for Developers",
+    title: "Chiton - The Best Community for Developers",
     description:
-      "TimeLine-io is the best platform for various kind of developers. You can post your ideas, create a topics, recruit people for projects.",
+      "Chiton is the best platform for various kind of developers. You can post your ideas, create a topics, recruit people for projects.",
     images: ["/images/og-image.png"],
   },
   robots: {
@@ -85,7 +85,7 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: "https://www.timeline-io.com/",
+    canonical: "https://www.Chiton.io/",
   },
 
   icons: {

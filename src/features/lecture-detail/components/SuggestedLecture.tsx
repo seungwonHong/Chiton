@@ -23,7 +23,7 @@ const SuggestedLecture = () => {
 
         <div className="flex flex-col items-start">
           <h1 className="text-[1.6rem] font-medium line-clamp-2">
-            The first lecture on TimeLine-io
+            The first lecture on Chiton
           </h1>
           <span className="text-[1.4rem] font-normal text-[#808080]">
             hong.seung.won

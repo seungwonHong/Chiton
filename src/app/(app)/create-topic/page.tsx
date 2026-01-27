@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef } from "react";
-import { ChevronDown, ImagePlus } from "lucide-react";
+import { ChevronDown, CornerDownRight, ImagePlus } from "lucide-react";
 import Input from "@/shared/components/Input";
 import { Trash2, Image, RotateCcw } from "lucide-react";
 import { z } from "zod";
@@ -13,6 +13,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 
 const topicSchema = z.object({
   name: z.string().nonempty({ message: "Name is required" }),
@@ -23,7 +24,7 @@ const topicSchema = z.object({
       z.object({
         name: z.string().trim(),
         color: z.string().default("#000000"),
-      })
+      }),
     )
     .default([{ name: "", color: "#000000" }]),
   topicPhilosophy: z
@@ -36,7 +37,7 @@ type TopicFormValues = z.infer<typeof topicSchema>;
 
 const CreateTopicPage = () => {
   const [visibility, setVisibility] = useState<"🌐 public" | "🔒 private">(
-    "🌐 public"
+    "🌐 public",
   );
 
   // 배너 이미지 관련 로직
@@ -141,7 +142,7 @@ const CreateTopicPage = () => {
       {
         shouldDirty: true,
         shouldValidate: true,
-      }
+      },
     );
   };
 
@@ -163,9 +164,9 @@ const CreateTopicPage = () => {
         </div>
 
         {/* 토픽 생성 내용 */}
-        <div className="flex flex-col mx-auto 2xl:mt-[6rem] lg:mt-[5rem] md:mt-[4rem] mt-[3rem] 2xl:gap-[4.8rem] lg:gap-[3.2rem] md:gap-[2.4rem] gap-[1.6rem] w-full md:items-center">
+        <div className="flex flex-col mx-auto 2xl:mt-[6rem] lg:mt-[5rem] md:mt-[4rem] mt-[3rem] 2xl:gap-[4.8rem] lg:gap-[3.2rem] md:gap-[2.4rem] gap-[1.6rem] 2xl:w-[84rem] lg:w-[72rem] md:w-[56rem] w-full md:items-center">
           {/* 공개 여부 */}
-          <div className="lg:w-[72rem] md:w-[56rem] w-full">
+          <div className="w-full">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <div
@@ -268,7 +269,7 @@ const CreateTopicPage = () => {
             />
           </div>
           {/* 커버 이미지 */}
-          <div className="flex flex-col lg:w-[72rem] md:w-[56rem] w-full">
+          <div className="flex flex-col w-full">
             <h2 className="2xl:text-[2.4rem] lg:text-[2.2rem] md:text-[2rem] text-[2.4rem] font-medium">
               Cover Image
             </h2>
@@ -327,19 +328,19 @@ const CreateTopicPage = () => {
             />
           </div>
           {/* 토픽 이름 */}
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full">
             <h2 className="2xl:text-[2.4rem] lg:text-[2.2rem] md:text-[2rem] text-[2.4rem] font-medium">
               Topic
             </h2>
             <Input
               type="text"
               placeholder="Enter topic name"
-              wrapperClassName="lg:w-[72rem] md:w-[56rem] w-full 2xl:mt-[2.4rem] lg:mt-[2rem] md:mt-[1.6rem] mt-[1.4rem]"
+              wrapperClassName="w-full 2xl:mt-[2.4rem] lg:mt-[2rem] md:mt-[1.6rem] mt-[1.4rem]"
               inputClassName="w-full lg:h-[4.8rem] md:h-[4rem] h-[4.8rem] text-[1.6rem] px-[1.2rem] rounded-[0.8rem]"
             />
           </div>
           {/* 토픽 설명*/}
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full">
             <h2 className="2xl:text-[2.4rem] lg:text-[2.2rem] md:text-[2rem] text-[2.4rem] font-medium">
               Description
             </h2>
@@ -347,12 +348,12 @@ const CreateTopicPage = () => {
               type="textarea"
               textareaRows={10}
               placeholder="Enter topic description"
-              wrapperClassName="lg:w-[72rem] md:w-[56rem] w-full 2xl:mt-[2.4rem] lg:mt-[2rem] md:mt-[1.6rem] mt-[1.4rem]"
+              wrapperClassName="w-full 2xl:mt-[2.4rem] lg:mt-[2rem] md:mt-[1.6rem] mt-[1.4rem]"
               inputClassName="w-full text-[1.6rem] p-[1.2rem] rounded-[0.8rem]"
             />
           </div>
           {/* 링크 */}
-          <div className="flex flex-col 2xl:w-[84rem] lg:w-[72rem] md:w-[56rem] w-full 2xl:gap-[1.6rem] lg:gap-[1.2rem] md:gap-[0.8rem] gap-[0.4rem]">
+          <div className="flex flex-col w-full 2xl:gap-[1.6rem] lg:gap-[1.2rem] md:gap-[0.8rem] gap-[0.4rem]">
             {links.map((_, index) => (
               <div
                 key={index}
@@ -383,7 +384,7 @@ const CreateTopicPage = () => {
             ))}
           </div>
           {/* 태그 설정 */}
-          <div className="flex flex-col 2xl:w-[84rem] lg:w-[72rem] md:w-[56rem] w-full 2xl:gap-[1.6rem] lg:gap-[1.2rem] md:gap-[0.8rem] gap-[0.4rem]">
+          <div className="flex flex-col w-full 2xl:gap-[1.6rem] lg:gap-[1.2rem] md:gap-[0.8rem] gap-[0.4rem]">
             {tags.map((_, index) => (
               <div
                 key={index}
@@ -417,7 +418,7 @@ const CreateTopicPage = () => {
             ))}
           </div>
           {/* 토픽 철학 */}
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full">
             <h2 className="2xl:text-[2.4rem] lg:text-[2.2rem] md:text-[2rem] text-[2.4rem] font-medium">
               Topic Philosophy
             </h2>
@@ -425,12 +426,12 @@ const CreateTopicPage = () => {
               type="textarea"
               textareaRows={10}
               placeholder="Enter topic description"
-              wrapperClassName="lg:w-[72rem] md:w-[56rem] w-full 2xl:mt-[2.4rem] lg:mt-[2rem] md:mt-[1.6rem] mt-[1.4rem]"
-              inputClassName="w-full text-[1.6rem] p-[1.2rem] rounded-[0.8rem]"
+              wrapperClassName="w-full 2xl:mt-[2.4rem] lg:mt-[2rem] md:mt-[1.6rem] mt-[1.4rem]"
+              inputClassName="w-full text-[1.6rem] p-[1.2rem] rounded-[0.8rem] w-full"
             />
           </div>
           {/* 규칙 설정 */}
-          <div className="flex flex-col 2xl:w-[84rem] lg:w-[72rem] md:w-[56rem] w-full 2xl:gap-[1.6rem] lg:gap-[1.2rem] md:gap-[0.8rem] gap-[0.4rem]">
+          <div className="flex flex-col w-full 2xl:gap-[1.6rem] lg:gap-[1.2rem] md:gap-[0.8rem] gap-[0.4rem]">
             {rules.map((_, index) => (
               <div
                 key={index}
@@ -448,7 +449,7 @@ const CreateTopicPage = () => {
                     index > 0 ? "md:ml-[3.2rem] ml-[2.4rem]" : ""
                   }`}
                   labelClassName="2xl:text-[2.4rem] lg:text-[2.2rem] md:text-[2rem] text-[2.4rem] font-medium gap-0"
-                  inputClassName="rounded-[0.8rem] w-full lg:h-[4.8rem] md:h-[4rem] h-[4.8rem] lg:text-[1.6rem] text-[1.4rem] px-[1.2rem]"
+                  inputClassName="rounded-[0.8rem] w-full lg:h-[4.8rem] md:h-[4rem] h-[4.8rem] lg:text-[1.6rem] text-[1.4rem] px-[1.2rem] w-full"
                   addIconClassName="2xl:w-[2.4rem] lg:w-[2rem] w-[2rem] 2xl:h-[2.4rem] lg:h-[2rem] h-[2rem]"
                 />
                 {index > 0 && (
@@ -460,6 +461,13 @@ const CreateTopicPage = () => {
               </div>
             ))}
           </div>
+          {/* 생성 버튼 */}
+          <Button className="flex-1 flex flex-row items-center gap-[0.8rem] cursor-pointer md:text-[1.4rem] text-[1.8rem] font-normal py-[1rem] rounded-[0.8rem] ml-auto mt-[4rem]">
+            <CornerDownRight className="!w-[2rem] !h-[2rem]" />
+            <span className="lg:text-[1.6rem] md:text-[1.4rem] text-[1.6rem] font-normal">
+              Create Lecture
+            </span>
+          </Button>
         </div>
       </div>
     </div>

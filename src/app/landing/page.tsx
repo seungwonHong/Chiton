@@ -28,7 +28,7 @@ const LandingPage = () => {
 
       <div className="2xl:mt-[2rem] lg:mt-[1.2rem] mt-[0.8rem] 2xl:w-[80rem] lg:w-[56rem] md:w-[48rem] w-[34rem] mx-auto">
         <p className="2xl:text-[2.4rem] lg:text-[1.6rem] text-[1.2rem] text-[var(--header-text)] font-light text-center fade-down-delay-1">
-          TimeLine-io is the best platform for various kind of developers. You
+          Chiton is the best platform for various kind of developers. You
           can post your ideas, create a topics, recruit people for projects.
         </p>
       </div>
@@ -61,7 +61,7 @@ const LandingPage = () => {
         <ArrowDown className="2xl:w-[3.2rem] lg:w-[2.4rem] md:w-[1.6rem] w-[1.6rem] 2xl:h-[3.2rem] lg:h-[2.4rem] md:h-[1.6rem] h-[1.6rem] 2xl:mt-[3.2rem] lg:mt-[2.4rem] md:mt-[1.6rem] mt-[1.2rem] text-[#808080]" />
         <Link href="/main/home?type=posts&filter=recent">
           <Button className="2xl:text-[2rem] lg:text-[1.6rem] text-[1.4rem] font-regular hover:bg-[var(--button-hover)] duration-300 ease-in-out cursor-pointer 2xl:mt-[3.2rem] lg:mt-[2.4rem] md:mt-[1.6rem] mt-[1.2rem] px-[2rem] py-[0.8rem]">
-            Explore TimeLine-io
+            Explore Chiton
           </Button>
         </Link>
       </div>

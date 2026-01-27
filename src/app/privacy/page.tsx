@@ -50,7 +50,7 @@ const Privacy = () => {
             Privacy Policy
           </h1>
           <h2 className="2xl:text-[1.6rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.4rem] font-normal text-center 2xl:w-[120rem] lg:w-[80rem] md:w-[64rem] w-[36rem] mx-auto">
-            TimeLine-io protects your personal data. This policy clearly explains
+            Chiton protects your personal data. This policy clearly explains
             how we collect, use, store, delete, and safeguard your information,
             and outlines your rights.
           </h2>
@@ -81,13 +81,13 @@ const Privacy = () => {
                   Privacy Policy Intro
                 </h3>
                 <p className="2xl:text-[1.6rem] md:text-[1.4rem] text-[1rem] font-normal">
-                  At TimeLine-io, we take your privacy seriously and built our
+                  At Chiton, we take your privacy seriously and built our
                   platform with privacy in mind. This Privacy Policy explains
-                  how we handle personal data. By using or accessing TimeLine-io,
+                  how we handle personal data. By using or accessing Chiton,
                   you agree to the practices and policies described below and
                   allow us to collect, use, and share your information as
                   outlined in this Policy. This Privacy Policy applies to your
-                  use of TimeLine-io and is incorporated into TimeLine-io’s{" "}
+                  use of Chiton and is incorporated into Chiton’s{" "}
                   <Link href="/termsofuse" className="text-[#6299FF]">
                     Terms of Use
                   </Link>
@@ -99,12 +99,12 @@ const Privacy = () => {
                   continuity, and we process limited ad-related data (like
                   interactions and standard device information) to make ads more
                   relevant. We don’t sell personal information, and we share
-                  data only with service providers who help us operate TimeLine-io
-                  under strict safeguards. We’re always improving TimeLine-io, so
+                  data only with service providers who help us operate Chiton
+                  under strict safeguards. We’re always improving Chiton, so
                   this Policy may change from time to time. If we make material
                   changes, we’ll notify you by posting a notice in the app or on
                   our website and/or sending an email. By continuing to use
-                  TimeLine-io after changes are posted, you agree to the updated
+                  Chiton after changes are posted, you agree to the updated
                   Policy.
                 </p>
               </div>
@@ -119,7 +119,7 @@ const Privacy = () => {
                 </h3>
                 <div className="2xl:text-[1.6rem] md:text-[1.4rem] text-[1rem] font-normal">
                   <p>
-                    TimeLine-io collects only the information needed to operate,
+                    Chiton collects only the information needed to operate,
                     secure, and improve the service, to keep you signed in, and
                     to provide personalized ads and content recommendations (you can opt out of personalized ads and cookies through your account settings at any time).
                   </p>
@@ -512,7 +512,7 @@ const Privacy = () => {
                 </h3>
                 <div className="2xl:text-[1.6rem] md:text-[1.4rem] text-[1rem] font-normal">
                   <p>
-                    TimeLine-io uses the Asia-Pacific (APAC) region as its main
+                    Chiton uses the Asia-Pacific (APAC) region as its main
                     data-processing region to provide the service. Accordingly,
                     your personal data may be transferred, stored, and processed
                     within the Asia-Pacific region (e.g., Singapore, Japan, or
@@ -565,7 +565,7 @@ const Privacy = () => {
                     </li>
                     <li>
                       <strong>Vercel (deployment/hosting):</strong> We use
-                      Vercel to deploy and host TimeLine-io. In connection with
+                      Vercel to deploy and host Chiton. In connection with
                       providing hosting and ensuring service reliability and
                       security, Vercel may process device and log data (e.g., IP
                       address, browser/device type, language, timestamps,
@@ -731,7 +731,7 @@ const Privacy = () => {
                 <div className="2xl:text-[1.6rem] md:text-[1.4rem] text-[1rem] font-normal">
                   <p>
                     This section explains the rights you have and the choices
-                    you can make when using TimeLine-io. We provide minimal, clear
+                    you can make when using Chiton. We provide minimal, clear
                     options aligned with how the Service operates.
                   </p>
 
@@ -994,7 +994,7 @@ const Privacy = () => {
                     <li>
                       <strong>Policy updates:</strong> If this Policy changes,
                       we will notify you via the app or website and/or email. By
-                      continuing to use TimeLine-io, you agree to the updated
+                      continuing to use Chiton, you agree to the updated
                       Policy.
                     </li>
                   </ul>

@@ -16,7 +16,7 @@ const LectureDetailHero = (props: Props) => {
       />
       <div className="flex flex-row items-start lg:mt-[1.6rem] md:mt-[1.2rem] mt-[0.8rem]">
         <h1 className="2xl:text-[2.4rem] lg:text-[2rem] md:text-[1.8rem] text-[2rem] font-medium line-clamp-2">
-          This is the first lecture on TimeLine-io
+          This is the first lecture on Chiton
         </h1>
         <div className="flex flex-row items-center ml-auto">
           <HeroActionBar />
@@ -59,7 +59,7 @@ const LectureDetailHero = (props: Props) => {
             </span>
           </div>
         </div>
-        <p>This video is about the first lecture on TimeLine-io</p>
+        <p>This video is about the first lecture on Chiton</p>
         <div className="flex flex-row flex-wrap gap-x-[0.6rem] text-[#808080]">
           <span className="hover:text-primary-color transition-all duration-300 ease-in-out cursor-pointer">
             #React

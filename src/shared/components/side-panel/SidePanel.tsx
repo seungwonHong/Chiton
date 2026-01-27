@@ -97,7 +97,7 @@ const SidePanel = ({ usage }: Props) => {
         </div>
         {/* 세번째 줄 */}
         <div className="flex flex-row items-center text-[1.2rem]">
-          <span>© 2025 TimeLine. All rights reserved.</span>
+          <span>© 2025 Chiton. All rights reserved.</span>
         </div>
       </div>
     </div>
