@@ -41,7 +41,7 @@ const LandingPage = () => {
         </Link>
         <Link href="/main/home?type=posts&filter=recent">
           <Button className="flex flex-row items-center justify-center gap-2 2xl:text-[2rem] lg:text-[1.6rem] text-[1.4rem] font-regular bg-transparent text-[var(--foreground)] hover:bg-[var(--button-hover-transparent)] duration-300 ease-in-out px-[2rem] py-[0.8rem]">
-            Explore{" "}
+            Explore
             <ChevronRight className="lg:w-[2rem] lg:h-[2rem] w-[1.6rem] h-[1.6rem]" />
           </Button>
         </Link>

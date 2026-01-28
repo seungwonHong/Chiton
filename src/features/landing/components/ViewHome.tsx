@@ -9,7 +9,7 @@ const ViewHome = () => {
         src="/images/ViewHomeDark.png"
         alt="ViewHome Dark"
         className="2xl:w-[160rem] 2xl:h-[103rem] xl:w-[120rem] xl:h-[80rem] lg:w-[96rem] lg:h-[64rem] md:w-[72rem] md:h-[46rem] w-[38rem] h-[24rem] mx-auto dark:block hidden"
-      />{" "}
+      />
       <img
         src="/images/ViewHomeLight.png"
         alt="ViewHome Light"

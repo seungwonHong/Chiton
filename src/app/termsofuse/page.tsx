@@ -615,7 +615,7 @@ const TermsOfUse = () => {
                     .
                     <br />
                     Operator: Hong Seung Won (Chiton) <br />
-                    Contact: timelineiocommunity@gmail.com
+                    Contact: contact@cirtium.com
                   </p>
                 </div>
               </div>
