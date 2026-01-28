@@ -83,13 +83,13 @@ const SidePanel = ({ usage }: Props) => {
             <span>Help</span>
           </Link>
           <a
-            href="https://x.com/TimeLine_io"
+            href="https://x.com/Chiton_Official"
             className="hover:text-foreground transition-colors duration-300 ease-in-out"
           >
             <span>X</span>
           </a>
           <a
-            href="https://www.instagram.com/timeline_io.official"
+            href="https://www.instagram.com/chiton.io/"
             className="hover:text-foreground transition-colors duration-300 ease-in-out"
           >
             <span>Instagram</span>
