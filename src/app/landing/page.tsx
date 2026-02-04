@@ -28,8 +28,8 @@ const LandingPage = () => {
 
       <div className="2xl:mt-[2rem] lg:mt-[1.2rem] mt-[0.8rem] 2xl:w-[80rem] lg:w-[56rem] md:w-[48rem] w-[34rem] mx-auto">
         <p className="2xl:text-[2.4rem] lg:text-[1.6rem] text-[1.2rem] text-[var(--header-text)] font-light text-center fade-down-delay-1">
-          Chiton is a community built for developers. You
-          can post your ideas, create topics, and learn through lectures.
+          Chiton is a community built for developers. You can post your ideas,
+          create topics, and learn through lectures.
         </p>
       </div>
 

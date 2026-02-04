@@ -1,7 +1,7 @@
 import React from "react";
-import LineChart from "./LineChart";
+import LineChart from "./chart/LineChart";
 import DashboardFilter from "./DashboardFilter";
-import CustomPieChart from "./PieChart";
+import CustomPieChart from "./chart/PieChart";
 
 interface Props {
   chartData?: { date: string; value: number }[];
