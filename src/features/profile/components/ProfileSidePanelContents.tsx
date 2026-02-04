@@ -13,6 +13,29 @@ const ProfileSidePanelContents = () => {
         type="sidePanel"
       />
 
+      {/* Social */}
+      <div className="flex flex-col mt-[4rem]">
+        <h2 className="text-[1.6rem] font-medium">Social</h2>
+        <div className="grid grid-cols-2 gap-[0.4rem] mt-[1.2rem] text-[1.4rem] font-normal text-[#808080]">
+          <div className="flex flex-col items-center justify-center">
+            <span>120</span>
+            <span className="text-foreground">Followers</span>
+          </div>
+          <div className="flex flex-col items-center justify-center">
+            <span>120</span>
+            <span className="text-foreground">Following</span>
+          </div>
+          <div className="flex flex-col items-center justify-center">
+            <span>120</span>
+            <span className="text-foreground">Subscribers</span>
+          </div>
+          <div className="flex flex-col items-center justify-center">
+            <span>120</span>
+            <span className="text-foreground">Subscribing</span>
+          </div>
+        </div>
+      </div>
+
       {/* Status */}
       <div className="flex flex-col w-full mt-[4rem]">
         <h2 className="text-[1.6rem] font-medium">Status</h2>
@@ -33,29 +56,6 @@ const ProfileSidePanelContents = () => {
           Beyond coding, I enjoy sharing knowledge, collaborating with others,
           and building meaningful digital experiences that connect people.
         </p>
-      </div>
-
-      {/* Social */}
-      <div className="flex flex-col">
-        <h2 className="text-[1.6rem] font-medium mt-[4rem]">Social</h2>
-        <div className="grid grid-cols-2 gap-[0.4rem] mt-[1.2rem] text-[1.4rem] font-normal text-[#808080]">
-          <div className="flex flex-col items-center justify-center">
-            <span>120</span>
-            <span className="text-foreground">Followers</span>
-          </div>
-          <div className="flex flex-col items-center justify-center">
-            <span>120</span>
-            <span className="text-foreground">Following</span>
-          </div>
-          <div className="flex flex-col items-center justify-center">
-            <span>120</span>
-            <span className="text-foreground">Subscribers</span>
-          </div>
-          <div className="flex flex-col items-center justify-center">
-            <span>120</span>
-            <span className="text-foreground">Subscribing</span>
-          </div>
-        </div>
       </div>
 
       {/* Links */}

@@ -39,7 +39,8 @@ const Dashboard = async ({
       if (earningsValue === 1) {
         // 24시간: 1시간 단위
         date.setHours(
-          date.getHours() - ((earningsValue === 1 ? 24 : earningsValue) - 1 - i)
+          date.getHours() -
+            ((earningsValue === 1 ? 24 : earningsValue) - 1 - i),
         );
         return {
           date: date.toLocaleTimeString("en-US", { hour: "numeric" }),
@@ -62,7 +63,7 @@ const Dashboard = async ({
           value: Math.random() * 100,
         };
       }
-    }
+    },
   );
 
   // 파이 차트 데이터(목업)
@@ -129,6 +130,8 @@ const Dashboard = async ({
               filter={true}
             />
           </div>
+
+          {/* 추후에 구독자랑 렉쳐 영상 선택해서 세부 정도(분석내용) 확인할 수 있도록 만들기 */}
 
           {/* 구독자 테이블 */}
           <div className="flex flex-col 2xl:mt-[4rem] lg:mt-[3.2rem] mt-[4.8rem] 2xl:mb-[4rem] lg:mb-[3.2rem] mb-[2.4rem]">

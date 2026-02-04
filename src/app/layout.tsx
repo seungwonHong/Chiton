@@ -22,11 +22,14 @@ const robotoMono = Roboto_Mono({
 export const metadata: Metadata = {
   title: "Chiton - The Best Community for Developers",
   description:
-    "Chiton is the best platform for various kind of developers. You can post your ideas, create a topics, recruit people for projects.",
+    "Chiton is a community built for developers. You can post your ideas, create topics, and learn through lectures.",
   keywords: [
     "Chiton",
     "Chiton IO",
     "Chiton",
+    "chiton official website",
+    "chiton website",
+    "chiton homepage",
     "Chiton Official",
     "Chiton Official Website",
     "developer platform",
@@ -40,6 +43,10 @@ export const metadata: Metadata = {
     "project recruitment",
     "tech community",
     "topic creation",
+    "lecture creation",
+    "code learning",
+    "monetize your content",
+    "monetize skills",
   ],
   authors: [{ name: "Chiton Team" }],
   creator: "Chiton",
@@ -52,7 +59,7 @@ export const metadata: Metadata = {
     type: "website",
     title: "Chiton - The Best Community for Developers",
     description:
-      "Chiton is the best platform for various kind of developers. You can post your ideas, create a topics, recruit people for projects.",
+      "Chiton is a community built for developers. You can post your ideas, create topics, and learn through lectures.",
     url: "https://www.chiton.io/",
     siteName: "Chiton - The Best Community for Developers",
     locale: "en_US",
@@ -69,7 +76,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Chiton - The Best Community for Developers",
     description:
-      "Chiton is the best platform for various kind of developers. You can post your ideas, create a topics, recruit people for projects.",
+      "Chiton is a community built for developers. You can post your ideas, create topics, and learn through lectures.",
     images: ["/images/ChitonShare.png"],
   },
   robots: {

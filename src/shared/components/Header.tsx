@@ -69,22 +69,22 @@ const Header = () => {
       <div className="flex flex-row items-center md:justify-normal justify-between">
         <Link
           href="/main/home?type=posts&filter=recent"
-          className="md:block hidden dark:hidden"
+          className="md:flex items-center justify-center hidden dark:hidden"
         >
           <img
             src="/icons/ChitonLogoDark.png"
             alt="logo"
-            className="2xl:w-[28px] 2xl:h-[28px] lg:w-[24px] lg:h-[24px] md:w-[20px] md:h-[20px] w-[24px] h-[24px]"
+            className="2xl:w-[28px] 2xl:h-[28px] lg:w-[24px] lg:h-[24px] md:w-[48px] md:h-[48px] w-[24px] h-[24px]"
           />
         </Link>
         <Link
           href="/main/home?type=posts&filter=recent"
-          className="md:dark:block hidden"
+          className="md:dark:flex hidden items-center justify-center 2xl:w-[28px] 2xl:h-[28px] lg:w-[24px] lg:h-[24px] md:w-[48px] md:h-[48px]"
         >
           <img
             src="/icons/ChitonLogoWhite.png"
             alt="logo"
-            className="2xl:w-[28px] 2xl:h-[28px] lg:w-[24px] lg:h-[24px] md:w-[20px] md:h-[20px] w-[24px] h-[24px]"
+            className="2xl:w-[28px] 2xl:h-[28px] lg:w-[24px] lg:h-[24px] md:w-[32px] md:h-[32px] w-[24px] h-[24px]"
           />
         </Link>
 
@@ -99,16 +99,16 @@ const Header = () => {
         <div className="absolute left-1/2 -translate-x-1/2 md:hidden">
           <Link href="/main/home?type=posts&filter=recent">
             <img
-              src="/icons/LogoBlack.png"
+              src="/icons/ChitonLogoDark.png"
               alt="logo"
-              className="block w-[48px] h-[48px] dark:hidden"
+              className="block w-[32px] h-[32px] dark:hidden"
             />
           </Link>
           <Link href="/main/home?type=posts&filter=recent">
             <img
-              src="/icons/LogoWhite.png"
+              src="/icons/ChitonLogoWhite.png"
               alt="logo"
-              className="dark:block hidden w-[48px] h-[48px]"
+              className="dark:block hidden w-[32px] h-[32px]"
             />
           </Link>
         </div>

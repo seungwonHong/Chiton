@@ -1,8 +1,9 @@
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ArrowBigUp, User } from "lucide-react";
+import { User } from "lucide-react";
 import HeroControl from "./HeroControl";
 import HeroActionBar from "./HeroActionBar";
+import LectureDetailHeroInfo from "./LectureDetailHeroInfo";
 
 type Props = {};
 
@@ -46,48 +47,7 @@ const LectureDetailHero = (props: Props) => {
         <HeroControl />
       </div>
       {/* 영상 설명 & 태그 & 날짜 */}
-      <div className="flex flex-col w-full bg-side-bar-hover rounded-[0.8rem] p-[0.8rem] lg:text-[1.4rem] md:text-[1.2rem] text-[1.4rem] font-normal lg:mt-[1.2rem] md:mt-[1rem] mt-[0.8rem] lg:gap-[0.8rem] md:gap-[0.6rem] gap-[0.4rem]">
-        <div className="flex flex-row items-center md:gap-[1.2rem] gap-[0.8rem]">
-          <span>4 hours ago</span>
-          <div className="flex flex-row items-center">
-            <ArrowBigUp
-              className="w-[1.6rem] h-[1.6rem] text-[#808080]"
-              strokeWidth={1.5}
-            />
-            <span className="text-[1.4rem] font-normal text-[#808080]">
-              100
-            </span>
-          </div>
-        </div>
-        <p>This video is about the first lecture on Chiton</p>
-        <div className="flex flex-row flex-wrap gap-x-[0.6rem] text-[#808080]">
-          <span className="hover:text-primary-color transition-all duration-300 ease-in-out cursor-pointer">
-            #React
-          </span>
-          <span>#Next.js</span>
-          <span className="hover:text-primary-color transition-all duration-300 ease-in-out cursor-pointer">
-            #Tailwind CSS
-          </span>
-          <span className="hover:text-primary-color transition-all duration-300 ease-in-out cursor-pointer">
-            #TypeScript
-          </span>
-          <span className="hover:text-primary-color transition-all duration-300 ease-in-out cursor-pointer">
-            #JavaScript
-          </span>
-          <span className="hover:text-primary-color transition-all duration-300 ease-in-out cursor-pointer">
-            #HTML
-          </span>
-          <span className="hover:text-primary-color transition-all duration-300 ease-in-out cursor-pointer">
-            #CSS
-          </span>
-          <span className="hover:text-primary-color transition-all duration-300 ease-in-out cursor-pointer">
-            #React
-          </span>
-          <span className="hover:text-primary-color transition-all duration-300 ease-in-out cursor-pointer">
-            #Next.js
-          </span>
-        </div>
-      </div>
+      <LectureDetailHeroInfo />
     </div>
   );
 };

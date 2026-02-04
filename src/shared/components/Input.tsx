@@ -7,10 +7,8 @@ import { Plus } from "lucide-react";
 import { Search } from "lucide-react";
 import { HexColorPicker } from "react-colorful";
 
-interface Props extends Omit<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  "type"
-> {
+interface Props
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> {
   label?: string;
   type: string;
   colorPicker?: boolean;
@@ -143,14 +141,16 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
                 ref={ref as React.Ref<HTMLInputElement>}
                 type={inputType}
                 placeholder={placeholder}
-                className={`bg-[var(--color-input-bg)] border-none outline-none ${inputClassName}`}
+                className={`bg-[var(--color-input-bg)] ${
+                  type === "search" ? "border-none" : "border border-border"
+                } outline-none ${inputClassName}`}
                 id={label}
                 {...rest}
               />
               {/* 태그 색상 선택 */}
               {colorPicker && (
                 <div
-                  className={`absolute right-[1.6rem] top-1/2 -translate-y-1/2 rounded-full w-[2.4rem] h-[2.4rem] border border-border shrink-0 cursor-pointer`}
+                  className={`absolute right-[1.2rem] top-1/2 -translate-y-1/2 rounded-full w-[2.4rem] h-[2.4rem] border border-border shrink-0 cursor-pointer`}
                   style={{ backgroundColor: colorValue }}
                   onClick={() => setColorPickerOpen(!colorPickerOpen)}
                 />
@@ -175,8 +175,7 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
               <EyeOff
                 className="absolute right-[1.6rem] top-1/2 -translate-y-1/2 cursor-pointer"
                 onClick={() => (
-                  setViewPassword(false),
-                  setInputType("password")
+                  setViewPassword(false), setInputType("password")
                 )}
               />
             ))}

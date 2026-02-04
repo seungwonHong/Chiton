@@ -1,6 +1,6 @@
-import React from 'react'
-import LineChart from './LineChart';
-import DashboardFilter from './DashboardFilter';
+import React from "react";
+import LineChart from "./chart/LineChart";
+import DashboardFilter from "./DashboardFilter";
 
 interface Props {
   chartData: { date: string; value: number }[];
@@ -43,6 +43,6 @@ const EarningsComponent = ({ chartData, earningsValue }: Props) => {
       />
     </div>
   );
-}
+};
 
-export default EarningsComponent
+export default EarningsComponent;

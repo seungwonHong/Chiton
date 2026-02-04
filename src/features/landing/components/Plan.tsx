@@ -30,12 +30,11 @@ const Plan = () => {
         className="lg:hidden flex flex-col items-center justify-center md:mt-[2.4rem] mt-[1.6rem]"
         data-aos="fade-up"
       >
-        
         <Suspense fallback={<div></div>}>
           <TabButton tabs={["Free", "Pro", "Ultimate"]} type="landing" />
         </Suspense>
 
-        {activeTab === "Free" && (
+        {activeTab === "free" && (
           <SubscriptionCard
             planName="Free"
             price="0"
@@ -53,7 +52,7 @@ const Plan = () => {
             className="md:mt-[2.4rem] mt-[1.6rem]"
           />
         )}
-        {activeTab === "Pro" && (
+        {activeTab === "pro" && (
           <SubscriptionCard
             planName="Pro"
             price="4.99"
@@ -73,7 +72,7 @@ const Plan = () => {
             className="md:mt-[2.4rem] mt-[1.6rem]"
           />
         )}
-        {activeTab === "Ultimate" && (
+        {activeTab === "ultimate" && (
           <SubscriptionCard
             planName="Ultimate"
             price="6.99"
