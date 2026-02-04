@@ -83,7 +83,7 @@ const TopicDetail = async ({ params }: { params: Promise<{ id: string }> }) => {
             {/* 포스트 */}
             {Array.from({ length: 5 }).map((_, index) => (
               <React.Fragment key={index}>
-                <Post id={index.toString()} />
+                <Post id={index.toString()} link={true} />
                 {index < 4 && (
                   <div className="2xl:my-[2.4rem] lg:my-[2rem] md:my-[1.6rem] my-[1.2rem] bg-divide-color w-full h-[0.5px]" />
                 )}

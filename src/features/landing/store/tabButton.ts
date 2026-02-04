@@ -6,6 +6,6 @@ interface TabState {
 }
 
 export const useTabStore = create<TabState>((set) => ({
-  activeTab: "Free",
+  activeTab: "free",
   setActiveTab: (tab) => set({ activeTab: tab }),
 }));
