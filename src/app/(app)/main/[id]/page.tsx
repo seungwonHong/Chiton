@@ -25,10 +25,11 @@ const titleMap: Record<string, string> = {
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }): Promise<Metadata> {
-  const id = params.id;
-  const label = titleMap[id] ?? "Home";
+  const { id } = await params;
+  const key = id.toLowerCase();
+  const label = titleMap[key] ?? "Home";
 
   return {
     title: `Chiton - ${label}`,
