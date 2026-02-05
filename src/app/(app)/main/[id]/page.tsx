@@ -13,31 +13,6 @@ import TopicComponent from "@/shared/components/topic/TopicComponent";
 import LectureComponent from "@/shared/components/lecture/LectureComponent";
 import { Metadata } from "next";
 
-const titleMap: Record<string, string> = {
-  home: "Home",
-  notification: "Notifications",
-  coding: "Coding",
-  video: "Video",
-  audio: "Audio",
-  design: "Design",
-};
-
-export async function generateMetadata({
-  params,
-}: {
-  params: { id: string };
-}): Promise<Metadata> {
-  const id = params.id;
-  const label = titleMap[id] ?? "Home";
-
-  return {
-    title: `Chiton - ${label}`,
-    // 필요하면 OG/Twitter도 같이
-    openGraph: { title: `Chiton - ${label}` },
-    twitter: { title: `Chiton - ${label}` },
-  };
-}
-
 const Main = async ({
   params,
   searchParams,
