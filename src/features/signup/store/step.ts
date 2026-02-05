@@ -70,7 +70,7 @@ interface StepStore {
 }
 
 const useStepStore = create<StepStore>((set) => ({
-  stepNumber: 5,
+  stepNumber: 1,
   setStepNumber: (stepNumber) => set({ stepNumber }),
 
   ageVerification: {

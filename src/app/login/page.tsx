@@ -1,7 +1,12 @@
 import React from "react";
-import Button from "@/shared/components/Button";
 import Link from "next/link";
 import LoginComponent from "@/features/login/components/LoginComponent";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Chiton - Log in",
+  description: "Log in to Chiton and start your journey.",
+};
 
 const Login = () => {
   return (
@@ -13,7 +18,7 @@ const Login = () => {
         <LoginComponent />
 
         <span className="2xl:text-[1.4rem] text-[1.2rem] text-normal lg:mt-[2rem] mt-[1.6rem]">
-          New to Chiton?
+          New to Chiton?{" "}
           <Link href="/signup" className="text-[var(--color-primary-color)]">
             Sign up
           </Link>
