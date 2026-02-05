@@ -25,10 +25,11 @@ const titleMap: Record<string, string> = {
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }): Promise<Metadata> {
-  const id = params.id.toLowerCase();
-  const label = titleMap[id] ?? "Home";
+  const { id } = await params;
+  const key = id.toLowerCase();
+  const label = titleMap[key] ?? "Home";
 
   return {
     title: `Chiton - ${label}`,
@@ -42,15 +43,15 @@ const Main = async ({
   params,
   searchParams,
 }: {
-  params: { id: string };
-  searchParams: {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{
     type?: "posts" | "topics" | "lectures";
-  };
+  }>;
 }) => {
   console.log("Before await params");
-  const { id } = params;
+  const { id } = await params;
   console.log("After await params, id:", id);
-  const { type } = searchParams;
+  const { type } = await searchParams;
   console.log("After await searchParams, type:", type);
   const capitalizedId = id.charAt(0).toUpperCase() + id.slice(1).toLowerCase();
 
