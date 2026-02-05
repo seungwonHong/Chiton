@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Input from "@/shared/components/Input";
 import { CornerUpRight } from "lucide-react";
 import Button from "@/shared/components/Button";
@@ -9,13 +9,25 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TriangleAlert } from "lucide-react";
 import useStepStore from "@/features/signup/store/step";
-import CheckBox from "@/features/signup/components/CheckBox";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  AlertDialog,
+  AlertDialogTitle,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogDescription,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogFooter,
+} from "@/components/ui/alert-dialog";
 
 const ageVerificationSchema = z
   .object({
     day: z.number().min(1).max(31),
     month: z.number().min(1).max(12),
-    year: z.number({message: "Please enter a valid age"}).min(1900, { message: "Year must be 1900 or later" }),
+    year: z
+      .number({ message: "Please enter a valid age" })
+      .min(1900, { message: "Year must be 1900 or later" }),
   })
   .refine(
     (data) => {
@@ -45,7 +57,7 @@ const ageVerificationSchema = z
     {
       message: "You must be at least 18 years old to use Chiton",
       path: ["year"], // 에러를 year 필드에 표시
-    }
+    },
   );
 
 type AgeVerificationFormValues = z.infer<typeof ageVerificationSchema>;
@@ -56,6 +68,8 @@ interface Props {
 
 const AgeVerification = ({ className }: Props) => {
   const { setStepNumber, ageVerification, setAgeVerification } = useStepStore();
+
+  const [showAgeAlert, setShowAgeAlert] = useState(false);
 
   const {
     register,
@@ -75,7 +89,10 @@ const AgeVerification = ({ className }: Props) => {
 
   const onSubmit = (data: AgeVerificationFormValues) => {
     if (!isValid) return;
-    if (!ageVerification?.confirmed) return;
+    if (!ageVerification?.confirmed) {
+      setShowAgeAlert(true);
+      return;
+    }
     setAgeVerification({
       day: data.day,
       month: data.month,
@@ -124,7 +141,7 @@ const AgeVerification = ({ className }: Props) => {
             onInput={(e) => {
               e.currentTarget.value = e.currentTarget.value.replace(
                 /[^0-9]/g,
-                ""
+                "",
               );
             }}
             onKeyDown={(e) => {
@@ -157,7 +174,7 @@ const AgeVerification = ({ className }: Props) => {
             onInput={(e) => {
               e.currentTarget.value = e.currentTarget.value.replace(
                 /[^0-9]/g,
-                ""
+                "",
               );
             }}
             onKeyDown={(e) => {
@@ -190,7 +207,7 @@ const AgeVerification = ({ className }: Props) => {
             onInput={(e) => {
               e.currentTarget.value = e.currentTarget.value.replace(
                 /[^0-9]/g,
-                ""
+                "",
               );
             }}
             onKeyDown={(e) => {
@@ -214,9 +231,12 @@ const AgeVerification = ({ className }: Props) => {
         {/* 체크박스 */}
         <div className="flex flex-col 2xl:mt-[2.4rem] lg:mt-[2rem] md:mt-[1.6rem] mt-[1.4rem]">
           <div className="flex flex-row items-center lg:gap-[0.8rem] gap-[0.8rem]">
-            <CheckBox
+            <Checkbox
+              className="lg:w-[1.8rem] lg:h-[1.8rem] w-[1.6rem] h-[1.6rem] cursor-pointer [&_svg]:w-[1.6rem] [&_svg]:h-[1.6rem]"
               checked={ageVerification?.confirmed ?? false}
-              onChange={(checked) => setAgeVerification({ confirmed: checked })}
+              onCheckedChange={(checked) =>
+                setAgeVerification({ confirmed: checked === true })
+              }
             />
             <span className="lg:text-[1.2rem] md:text-[1rem] text-[1.2rem] text-normal">
               I confirm that I am at least 18 years old.
@@ -268,9 +288,33 @@ const AgeVerification = ({ className }: Props) => {
           </Link>
         </span>
       </div>
+
+      <AlertDialog open={showAgeAlert} onOpenChange={setShowAgeAlert}>
+        <AlertDialogContent className="border-border rounded-[1.6rem]">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-[1.6rem] font-medium">
+              Age verification required
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-[1.4rem] text-normal text-[#676767]">
+              Please confirm that you are at least 18 years old.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+
+          <AlertDialogFooter className="mt-[1.2rem]">
+            <AlertDialogCancel className="h-[3.2rem] text-[1.4rem] rounded-[0.8rem] cursor-pointer font-normal">
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              className="h-[3.2rem] text-[1.4rem] rounded-[0.8rem] cursor-pointer font-normal"
+              onClick={() => setAgeVerification({ confirmed: true })}
+            >
+              Confirm
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
 
 export default AgeVerification;
-
